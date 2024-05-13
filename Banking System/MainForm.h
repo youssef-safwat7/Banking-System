@@ -250,6 +250,8 @@ namespace BankingSystem {
 		public: Taller^ taller;
 		public: Admin^ admin;
 		public: String^ role;
+		public: int id;
+
 
 	private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -312,7 +314,7 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 					 reader->GetString(3), reader->GetInt32(4), reader->GetString(5), reader->GetString(6),
 					 reader->IsDBNull(7) ? 0.0f : Convert::ToSingle(reader->GetValue(7)));
 				
-
+				// id = reader->GetInt32(0);
 
 				 this->Close();
 			 }

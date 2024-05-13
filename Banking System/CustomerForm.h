@@ -19,13 +19,57 @@ namespace BankingSystem {
 	public ref class CustomerForm : public System::Windows::Forms::Form
 	{
 	public:
-		Customer^ customer;
+		
 
-		CustomerForm(Customer^ _customer)
+		CustomerForm(Customer^ customer_)
 		{
-			customer = _customer;
+			customer = customer_;
 			InitializeComponent();
 			loadInfo();
+			//try
+			//{
+
+
+
+			//	String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+
+			//	// Using a using statement to ensure proper resource management
+			//	{
+			//		SqlConnection sqlConn(connString);
+			//		sqlConn.Open();
+
+			//		// Populate users
+			//		String^ sqlQuery = "SELECT * FROM customers WHERE id =@id";
+			//		SqlCommand command(sqlQuery, % sqlConn);
+			//		command.Parameters->AddWithValue("@id", id);
+			//		SqlDataReader^ reader = command.ExecuteReader();
+
+			//		if (reader->Read())
+			//		{
+			//			customer = gcnew Customer(reader->GetInt32(0), reader->GetString(1), reader->GetString(2), reader->GetString(3), reader->GetInt32(4), reader->GetString(5), reader->GetString(6),
+			//				reader->IsDBNull(7) ? 0.0f : Convert::ToSingle(reader->GetValue(7)));
+
+
+			//		}
+
+			//		reader->Close(); // Close the reader when done
+			//		sqlConn.Close();
+			//		// Populate transactions
+			//	 // Close the reader when done
+			//	} // SqlConnection is automatically closed when it goes out of scope
+
+			//	// Dispose of objects to release resources
+			//}
+			//catch (SqlException^ ex)
+			//{
+			//	// Handle SQL exceptions
+			//	MessageBox::Show("Error: " + ex->Message);
+			//}
+			//catch (Exception^ ex)
+			//{
+			//	// Handle other exceptions
+			//	MessageBox::Show("Error: " + ex->Message);
+			//}
 			//TODO: Add the constructor code here
 			//
 		}
@@ -45,12 +89,13 @@ namespace BankingSystem {
 
 				// Update Customer information
 				SqlCommand^ updateUserCommand;
-
-				String^ updateUserQuery = "UPDATE customers SET accountBalance = @accountBalance WHERE id = @id;";
-				updateUserCommand = gcnew SqlCommand(updateUserQuery, sqlConn);
-				updateUserCommand->Parameters->AddWithValue("@accountBalance", customer->GetAccountBalance());
-				updateUserCommand->Parameters->AddWithValue("@id", customer->GetId());
-				updateUserCommand->ExecuteNonQuery();
+			
+					String^ updateUserQuery = "UPDATE customers SET accountBalance = @accountBalance WHERE id = @id;";
+					updateUserCommand = gcnew SqlCommand(updateUserQuery, sqlConn);
+					updateUserCommand->Parameters->AddWithValue("@accountBalance", customer->GetAccountBalance());
+					updateUserCommand->Parameters->AddWithValue("@id", customer->GetId());
+					updateUserCommand->ExecuteNonQuery();
+				
 
 
 				// Insert transactions
@@ -393,6 +438,7 @@ namespace BankingSystem {
 			this->groupBox4->TabIndex = 68;
 			this->groupBox4->TabStop = false;
 			this->groupBox4->Text = L"Account Informations";
+			this->groupBox4->Enter += gcnew System::EventHandler(this, &CustomerForm::groupBox4_Enter_1);
 			// 
 			// button1
 			// 
@@ -465,6 +511,7 @@ namespace BankingSystem {
 			this->accountBalance->Size = System::Drawing::Size(166, 25);
 			this->accountBalance->TabIndex = 54;
 			this->accountBalance->Text = L"Account Balance:";
+			this->accountBalance->Click += gcnew System::EventHandler(this, &CustomerForm::accountBalance_Click);
 			// 
 			// name
 			// 
@@ -491,6 +538,7 @@ namespace BankingSystem {
 			this->Controls->Add(this->groupBox4);
 			this->Name = L"CustomerForm";
 			this->Text = L"CustomerForm";
+			this->Load += gcnew System::EventHandler(this, &CustomerForm::CustomerForm_Load);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
@@ -506,7 +554,7 @@ namespace BankingSystem {
 #pragma endregion
 
 
-
+	public: Customer^ customer;
 	public: void lastTransactions() {
 
 		String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
@@ -570,7 +618,7 @@ public: void loadInfo() {
 	accountNumber->Text = customer->GetId().ToString();
 
 		name->Text = "Name: "+ customer->GetName();
-		accountBalance->Text = "Account Balance"+customer->GetAccountBalance().ToString();
+		//accountBalance->Text = "Account Balance"+customer->GetAccountBalance().ToString();
 		address->Text = "Address: "+customer->GetAddress();
 		phoneNumber->Text ="Phone Number"+ customer->GetPhoneNumber();
 		email->Text = "Email: "+customer->GetEmail();
@@ -644,6 +692,12 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 
 		}
 		lastTransactions();
+}
+private: System::Void CustomerForm_Load(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void accountBalance_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void groupBox4_Enter_1(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

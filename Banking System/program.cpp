@@ -31,7 +31,7 @@ int main(cli::array<System::String^>^ args) // Change 'void' to 'int' for the ma
         adminForm.ShowDialog();
     }
     else if (customer != nullptr && form.role == "Customer") {
-        BankingSystem::CustomerForm customerForm(customer); // Change 'AdminForm' to 'adminForm'
+        BankingSystem::CustomerForm customerForm(form.customer); // Change 'AdminForm' to 'adminForm'
         customerForm.ShowDialog();
     }
 

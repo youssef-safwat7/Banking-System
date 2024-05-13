@@ -58,7 +58,8 @@ namespace BankingSystem {
 	private: System::Windows::Forms::TextBox^ tbPassword;
 
 	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::TextBox^ tbAge;
+	private: System::Windows::Forms::TextBox^ tbAgeReg;
+
 
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::TextBox^ tbAddress;
@@ -109,7 +110,7 @@ namespace BankingSystem {
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->tbPassword = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
-			this->tbAge = (gcnew System::Windows::Forms::TextBox());
+			this->tbAgeReg = (gcnew System::Windows::Forms::TextBox());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->tbAddress = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
@@ -203,12 +204,12 @@ namespace BankingSystem {
 			this->label6->TabIndex = 35;
 			this->label6->Text = L"Password";
 			// 
-			// tbAge
+			// tbAgeReg
 			// 
-			this->tbAge->Location = System::Drawing::Point(354, 384);
-			this->tbAge->Name = L"tbAge";
-			this->tbAge->Size = System::Drawing::Size(196, 22);
-			this->tbAge->TabIndex = 34;
+			this->tbAgeReg->Location = System::Drawing::Point(354, 384);
+			this->tbAgeReg->Name = L"tbAgeReg";
+			this->tbAgeReg->Size = System::Drawing::Size(196, 22);
+			this->tbAgeReg->TabIndex = 34;
 			// 
 			// label7
 			// 
@@ -309,7 +310,7 @@ namespace BankingSystem {
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->tbPassword);
 			this->Controls->Add(this->label6);
-			this->Controls->Add(this->tbAge);
+			this->Controls->Add(this->tbAgeReg);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->tbAddress);
 			this->Controls->Add(this->label4);
@@ -364,16 +365,16 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 		String^ name = this->tbName->Text;
 		String^ address = this->tbAddress->Text;
 		String^ phoneNumber = this->tbPhoneNumber->Text;
-		int age = 0; // Initialize age to 0
+		int age; // Initialize age to 0
 
 		// Try parsing age
-		if (!Int32::TryParse(this->tbAge->Text, age)) {
+		if (!Int32::TryParse(this->tbAgeReg->Text, age)) {
 			// Age parsing failed, handle the error
 			MessageBox::Show("Please enter a valid age.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}
-		Int32::TryParse(this->tbAge->Text, age);
-		if (email->Length == 0 ||  password->Length==0 || name->Length == 0 || address->Length == 0 || phoneNumber->Length == 0 || age<= 0) {
+		//Int32::TryParse(this->tbAge->Text, age);
+		if (email->Length == 0 ||  password->Length==0 || name->Length == 0 || address->Length == 0 || phoneNumber->Length == 0 || age <= 0) {
 			MessageBox::Show("Please Fill All Required Filled.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}

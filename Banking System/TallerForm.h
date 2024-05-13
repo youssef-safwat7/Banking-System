@@ -828,7 +828,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
 	
 }
-public: bool loadTransactions = true;
+public: bool loadTransactions = true; 
 public: void lastTransactions(int accountNumber) {
 	if (loadTransactions) {
 		String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
@@ -845,8 +845,8 @@ public: void lastTransactions(int accountNumber) {
 			int num_id = reader_trans->GetInt32(0);
 			if (customers->TryGetValue(num_id, customer))
 			{
-				customer->transactions->Push(gcnew Transaction(reader_trans->GetInt32(0), reader_trans->IsDBNull(4) ? 0.0f : Convert::ToSingle(reader_trans->GetValue(4)),
-					reader_trans->GetString(1), reader_trans->GetInt32(2), reader_trans->GetInt32(3)));
+				customer->transactions->Push(gcnew Transaction(reader_trans->GetInt32(0), reader_trans->IsDBNull(1) ? 0.0f : Convert::ToSingle(reader_trans->GetValue(1)),
+					reader_trans->GetString(2), reader_trans->GetInt32(3), reader_trans->GetInt32(4)));
 			}
 		}
 
@@ -855,7 +855,7 @@ public: void lastTransactions(int accountNumber) {
 
 		loadTransactions = false;
 	}
-	
+
 	if (customers->TryGetValue(accountNumber, customer)) {
 
 
@@ -890,7 +890,6 @@ public: void lastTransactions(int accountNumber) {
 	}
 
 }
-
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
 private: System::Void bCheck_Click_1(System::Object^ sender, System::EventArgs^ e) {
@@ -1001,7 +1000,7 @@ private: System::Void button7_Click_1(System::Object^ sender, System::EventArgs^
 	lastTransactions(accountNumber);
 
 }
-private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {	
+private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	int id;
 	bool parseSuccess = Int32::TryParse(this->tbAccountNumDelete->Text, id);
 
@@ -1015,22 +1014,14 @@ private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^
 			sqlConn.Open();
 
 			// Populate users
-			String^ sqlQuery = "DELETE FROM transactions WHERE id = @id;";
+		
+			String^ sqlQuery = "DELETE FROM customers WHERE id = @id;";
 			SqlCommand command(sqlQuery, % sqlConn);
 
 			command.Parameters->AddWithValue("@id", id);
-
-			int rowsAffected_trans = command.ExecuteNonQuery();
-			while (rowsAffected_trans > 0)
-			{
-
-				rowsAffected_trans = command.ExecuteNonQuery();
-			}
-			sqlQuery = "DELETE FROM users WHERE id = @id;";
-
 			int rowsAffected = command.ExecuteNonQuery();
 			//command.Parameters->AddWithValue("@id", id);
-		
+
 			if (rowsAffected > 0)
 			{
 				// Customer deleted successfully
@@ -1042,6 +1033,16 @@ private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^
 			{
 				// Customer with the provided ID does not exist
 				MessageBox::Show("Customer with ID " + id + " does not exist.");
+			}
+			 sqlQuery = "DELETE FROM transactions WHERE id = @id;";
+			 SqlCommand transCommand(sqlQuery, % sqlConn);
+
+			 transCommand.Parameters->AddWithValue("@id", id);
+			int rowsAffected_trans = transCommand.ExecuteNonQuery();
+			while (rowsAffected_trans > 0)
+			{
+
+				rowsAffected_trans = command.ExecuteNonQuery();
 			}
 		}
 		catch (SqlException^ ex)
@@ -1061,8 +1062,8 @@ private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^
 		MessageBox::Show("Invalid ID format.");
 	}
 	while (dataGridView1->Rows->Count > 0) {
-			dataGridView1->Rows->RemoveAt(0);
-		}
+		dataGridView1->Rows->RemoveAt(0);
+	}
 }
 private: System::Void dataGridView1_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 }
