@@ -1,0 +1,93 @@
+﻿  CustomerForm.cpp
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(321,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'CustomerForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(321,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(322,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'CustomerForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(322,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(323,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'CustomerForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(323,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(324,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'CustomerForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(324,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\CustomerForm.h(591,6): warning C4101: 'from': unreferenced local variable
+  (compiling source file 'CustomerForm.cpp')
+  
+  MangeForm.cpp
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(321,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'MangeForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(321,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(322,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'MangeForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(322,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(323,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'MangeForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(323,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(324,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'MangeForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(324,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+  TallerForm.cpp
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(321,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'TallerForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(321,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(322,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'TallerForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(322,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(323,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'TallerForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(323,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(324,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'TallerForm.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(324,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+  program.cpp
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(321,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'program.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(321,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(322,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'program.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(322,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(323,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'program.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(323,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(324,30): warning C4947: 'System::Data::SqlClient::SqlParameterCollection::Add': marked as obsolete
+  (compiling source file 'program.cpp')
+  C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\AdminForm.h(324,30):
+  Message: 'Add(String parameterName, Object value) has been deprecated.  Use AddWithValue(String parameterName, Object value).  http://go.microsoft.com/fwlink/?linkid=14202'
+  
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\CustomerForm.h(591,6): warning C4101: 'from': unreferenced local variable
+  (compiling source file 'program.cpp')
+  
+  Generating Code...
+  AdminForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Banking System.vcxproj -> C:\Users\youss\source\repos\Banking-_System\Banking System\x64\Debug\Banking System.exe

@@ -1,0 +1,17 @@
+C:\Users\youss\source\repos\Banking-System\Banking System\Banking System\x64\Debug\Banking System.vcxproj.AssemblyReference.cache
+C:\Users\youss\source\repos\Banking-System\Banking System\Banking System\x64\Debug\BankingSystem.MainForm.resources
+C:\Users\youss\source\repos\Banking-System\Banking System\Banking System\x64\Debug\Banking System.vcxproj.GenerateResource.cache
+C:\Users\youss\source\repos\Banking-System\Banking System\Banking System\x64\Debug\BankingSystem.registrationForm.resources
+C:\Users\youss\source\repos\Banking-System\Banking System\Banking System\x64\Debug\BankingSystem.TallerForm.resources
+C:\Users\youss\source\repos\Banking-System\Banking System\Banking System\x64\Debug\BankingSystem.MangeForm.resources
+C:\Users\youss\source\repos\Banking-System\Banking System\Banking System\x64\Debug\BankingSystem.AdminForm.resources
+C:\Users\youss\source\repos\Banking-System\Banking System\Banking System\x64\Debug\BankingSystem.ViewInfo.resources
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\Banking System.vcxproj.AssemblyReference.cache
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\BankingSystem.AdminForm.resources
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\BankingSystem.MainForm.resources
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\BankingSystem.MangeForm.resources
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\BankingSystem.registrationForm.resources
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\BankingSystem.TallerForm.resources
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\BankingSystem.ViewInfo.resources
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\Banking System.vcxproj.GenerateResource.cache
+C:\Users\youss\source\repos\Banking-_System\Banking System\Banking System\x64\Debug\BankingSystem.CustomerForm.resources

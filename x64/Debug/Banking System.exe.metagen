@@ -1,0 +1,100 @@
+  BankingSystem.AdminForm.resources - Embedded, ContainedInManifestFile, 
+  BankingSystem.CustomerForm.resources - Embedded, ContainedInManifestFile, 
+  BankingSystem.MainForm.resources - Embedded, ContainedInManifestFile, 
+  BankingSystem.MangeForm.resources - Embedded, ContainedInManifestFile, 
+  BankingSystem.registrationForm.resources - Embedded, ContainedInManifestFile, 
+  BankingSystem.TallerForm.resources - Embedded, ContainedInManifestFile, 
+  BankingSystem.ViewInfo.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly Banking System, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class Transaction: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(Int32, Single, System.String, Int32, Int32): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Int32 sender : Public
+    Int32 receiver : Public
+    Single amount : Public
+    Int32 id : Public
+    System.String type : Public
+Class Customer: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(Int32, System.String, System.String, System.String, Int32, System.String, System.String, Single): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    System.Collections.Generic.Stack`1[Transaction] transactions : Public
+  Methods:
+    GetAge(): PrivateScope, Public, HideBySig
+    SetAge(Int32): PrivateScope, Public, HideBySig
+    GetId(): PrivateScope, Public, HideBySig
+    SetId(Int32): PrivateScope, Public, HideBySig
+    GetAccountBalance(): PrivateScope, Public, HideBySig
+    SetAccountBalance(Single): PrivateScope, Public, HideBySig
+    GetEmail(): PrivateScope, Public, HideBySig
+    SetEmail(String): PrivateScope, Public, HideBySig
+    GetPhoneNumber(): PrivateScope, Public, HideBySig
+    SetPhoneNumber(String): PrivateScope, Public, HideBySig
+    GetPassword(): PrivateScope, Public, HideBySig
+    SetPassword(String): PrivateScope, Public, HideBySig
+    GetName(): PrivateScope, Public, HideBySig
+    SetName(String): PrivateScope, Public, HideBySig
+    GetAddress(): PrivateScope, Public, HideBySig
+    SetAddress(String): PrivateScope, Public, HideBySig
+    withdraw(Single): PrivateScope, Public, HideBySig
+    deposit(Single): PrivateScope, Public, HideBySig
+    transfer(Customer, Single): PrivateScope, Public, HideBySig
+Class Admin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String, System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Taller: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(System.String, System.String, System.String, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class BankingSystem.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Customer customer : Public
+    Taller taller : Public
+    Admin admin : Public
+    System.String role : Public
+Class BankingSystem.AdminForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class BankingSystem.registrationForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class BankingSystem.TallerForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Customer customer : Public
+    Customer accebter : Public
+    Boolean loadTransactions : Public
+    System.Collections.Generic.Dictionary`2[System.Int32,Customer] customers : Public, Static
+  Methods:
+    lastTransactions(Int32): PrivateScope, Public, HideBySig
+Class BankingSystem.CustomerForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(Customer): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    Customer customer : Public
+    BankingSystem.TallerForm form IsByValue : Public, InitOnly
+  Methods:
+    lastTransactions(): PrivateScope, Public, HideBySig
+    loadInfo(): PrivateScope, Public, HideBySig
+Class BankingSystem.MangeForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class BankingSystem.ViewInfo: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
