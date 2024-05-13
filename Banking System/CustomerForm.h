@@ -26,50 +26,9 @@ namespace BankingSystem {
 			customer = customer_;
 			InitializeComponent();
 			loadInfo();
-			//try
-			//{
+			lastTransactions();
 
-
-
-			//	String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-
-			//	// Using a using statement to ensure proper resource management
-			//	{
-			//		SqlConnection sqlConn(connString);
-			//		sqlConn.Open();
-
-			//		// Populate users
-			//		String^ sqlQuery = "SELECT * FROM customers WHERE id =@id";
-			//		SqlCommand command(sqlQuery, % sqlConn);
-			//		command.Parameters->AddWithValue("@id", id);
-			//		SqlDataReader^ reader = command.ExecuteReader();
-
-			//		if (reader->Read())
-			//		{
-			//			customer = gcnew Customer(reader->GetInt32(0), reader->GetString(1), reader->GetString(2), reader->GetString(3), reader->GetInt32(4), reader->GetString(5), reader->GetString(6),
-			//				reader->IsDBNull(7) ? 0.0f : Convert::ToSingle(reader->GetValue(7)));
-
-
-			//		}
-
-			//		reader->Close(); // Close the reader when done
-			//		sqlConn.Close();
-			//		// Populate transactions
-			//	 // Close the reader when done
-			//	} // SqlConnection is automatically closed when it goes out of scope
-
-			//	// Dispose of objects to release resources
-			//}
-			//catch (SqlException^ ex)
-			//{
-			//	// Handle SQL exceptions
-			//	MessageBox::Show("Error: " + ex->Message);
-			//}
-			//catch (Exception^ ex)
-			//{
-			//	// Handle other exceptions
-			//	MessageBox::Show("Error: " + ex->Message);
-			//}
+		
 			//TODO: Add the constructor code here
 			//
 		}
@@ -80,6 +39,7 @@ namespace BankingSystem {
 		/// </summary>
 		~CustomerForm()
 		{
+			MessageBox::Show("~CustomerForm" );
 
 			try
 			{
@@ -87,15 +47,22 @@ namespace BankingSystem {
 				SqlConnection^ sqlConn = gcnew SqlConnection(connString);
 				sqlConn->Open();
 
+				
+
 				// Update Customer information
 				SqlCommand^ updateUserCommand;
-			
-					String^ updateUserQuery = "UPDATE customers SET accountBalance = @accountBalance WHERE id = @id;";
-					updateUserCommand = gcnew SqlCommand(updateUserQuery, sqlConn);
-					updateUserCommand->Parameters->AddWithValue("@accountBalance", customer->GetAccountBalance());
-					updateUserCommand->Parameters->AddWithValue("@id", customer->GetId());
-					updateUserCommand->ExecuteNonQuery();
+				String^ updateUserQuery = "UPDATE customers SET accountBalance = @accountBalance WHERE id=@id;";
+				updateUserCommand = gcnew SqlCommand(updateUserQuery, sqlConn);
+
+				// Add parameters
+				updateUserCommand->Parameters->AddWithValue("@accountBalance", customer->GetAccountBalance());
+				updateUserCommand->Parameters->AddWithValue("@id", customer->GetId());
+
+				// Execute the query
+				 updateUserCommand->ExecuteNonQuery();
+
 				
+				 MessageBox::Show("~CustomerForm"+ customer->GetAccountBalance());
 
 
 				// Insert transactions
@@ -462,18 +429,18 @@ namespace BankingSystem {
 			this->phoneNumber->AutoSize = true;
 			this->phoneNumber->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->phoneNumber->Location = System::Drawing::Point(354, 255);
+			this->phoneNumber->Location = System::Drawing::Point(342, 157);
 			this->phoneNumber->Name = L"phoneNumber";
-			this->phoneNumber->Size = System::Drawing::Size(149, 25);
+			this->phoneNumber->Size = System::Drawing::Size(154, 25);
 			this->phoneNumber->TabIndex = 58;
-			this->phoneNumber->Text = L"Phone Number:";
+			this->phoneNumber->Text = L"Phone Number: ";
 			// 
 			// accountNumber
 			// 
 			this->accountNumber->AutoSize = true;
 			this->accountNumber->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->accountNumber->Location = System::Drawing::Point(354, 40);
+			this->accountNumber->Location = System::Drawing::Point(342, 58);
 			this->accountNumber->Name = L"accountNumber";
 			this->accountNumber->Size = System::Drawing::Size(164, 25);
 			this->accountNumber->TabIndex = 57;
@@ -484,33 +451,33 @@ namespace BankingSystem {
 			this->email->AutoSize = true;
 			this->email->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->email->Location = System::Drawing::Point(30, 142);
+			this->email->Location = System::Drawing::Point(18, 157);
 			this->email->Name = L"email";
-			this->email->Size = System::Drawing::Size(66, 25);
+			this->email->Size = System::Drawing::Size(71, 25);
 			this->email->TabIndex = 56;
-			this->email->Text = L"Email:";
+			this->email->Text = L"Email: ";
 			// 
 			// address
 			// 
 			this->address->AutoSize = true;
 			this->address->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->address->Location = System::Drawing::Point(354, 142);
+			this->address->Location = System::Drawing::Point(18, 272);
 			this->address->Name = L"address";
-			this->address->Size = System::Drawing::Size(91, 25);
+			this->address->Size = System::Drawing::Size(96, 25);
 			this->address->TabIndex = 55;
-			this->address->Text = L"Address:";
+			this->address->Text = L"Address: ";
 			// 
 			// accountBalance
 			// 
 			this->accountBalance->AutoSize = true;
 			this->accountBalance->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->accountBalance->Location = System::Drawing::Point(30, 255);
+			this->accountBalance->Location = System::Drawing::Point(342, 272);
 			this->accountBalance->Name = L"accountBalance";
-			this->accountBalance->Size = System::Drawing::Size(166, 25);
+			this->accountBalance->Size = System::Drawing::Size(171, 25);
 			this->accountBalance->TabIndex = 54;
-			this->accountBalance->Text = L"Account Balance:";
+			this->accountBalance->Text = L"Account Balance: ";
 			this->accountBalance->Click += gcnew System::EventHandler(this, &CustomerForm::accountBalance_Click);
 			// 
 			// name
@@ -518,7 +485,7 @@ namespace BankingSystem {
 			this->name->AutoSize = true;
 			this->name->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->name->Location = System::Drawing::Point(30, 40);
+			this->name->Location = System::Drawing::Point(18, 58);
 			this->name->Name = L"name";
 			this->name->Size = System::Drawing::Size(70, 25);
 			this->name->TabIndex = 53;
@@ -555,72 +522,75 @@ namespace BankingSystem {
 
 
 	public: Customer^ customer;
+	public: bool loadTransactions = true;
+
 	public: void lastTransactions() {
 
-		String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-		SqlConnection sqlConn(connString);
-		sqlConn.Open();
+		if (loadTransactions) {
+			String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+			SqlConnection sqlConn(connString);
+			sqlConn.Open();
 
-		// Populate users
-		String^ sqlQuery_trans = "SELECT * FROM transactions WHERE id=@id";
-		SqlCommand command(sqlQuery_trans, % sqlConn);
-		command.Parameters->AddWithValue("@id", customer->GetId());
+			// Populate users
+			String^ sqlQuery_trans = "SELECT * FROM transactions WHERE id=@id";
+			SqlCommand command(sqlQuery_trans, % sqlConn);
+			command.Parameters->AddWithValue("@id", customer->GetId());
+			SqlDataReader^ reader_trans = command.ExecuteReader();
 
-		SqlDataReader^ reader_trans = command.ExecuteReader();
+			while (reader_trans->Read())
+			{
+				
+					customer->transactions->Push(gcnew Transaction(reader_trans->GetInt32(0), reader_trans->IsDBNull(1) ? 0.0f : Convert::ToSingle(reader_trans->GetValue(1)),
+						reader_trans->GetString(2), reader_trans->GetInt32(3), reader_trans->GetInt32(4)));
+				
+			}
 
-		if (reader_trans->Read())
-		{
-			int num_id = reader_trans->GetInt32(0);
+			reader_trans->Close();
+			sqlConn.Close();
 
-			customer->transactions->Push(gcnew Transaction(reader_trans->GetInt32(0), reader_trans->IsDBNull(4) ? 0.0f : Convert::ToSingle(reader_trans->GetValue(4)),
-				reader_trans->GetString(1), reader_trans->GetInt32(2), reader_trans->GetInt32(3)));
-
+			loadTransactions = false;
 		}
 
-		reader_trans->Close();
-		sqlConn.Close();
 
-		//loadTransactions = false;
-	
+			int count = 10; // Make sure to set this to a value or parse it from Customer input
+
+			List<Transaction^>^ lastTransactions = gcnew List<Transaction^>();
+
+			// Retrieve the last 'count' transactions
+			int remaining = count; // Ensure 'count' is assigned a value
+			for each (Transaction ^ transaction in customer->transactions) {
+				lastTransactions->Add(transaction);
+				remaining--;
+				if (remaining == 0) {
+					break;
+				}
+			}
+			// Clear existing data in the DataGridView
+			dataGridView1->AllowUserToAddRows = false;
+
+			while (dataGridView1->Rows->Count > 0) {
+				dataGridView1->Rows->RemoveAt(0);
+			}
+
+			// Populate the DataGridView with the last transactions in reverse order
+			for (int i = 0; i < lastTransactions->Count; i++) {
+				Transaction^ transaction = lastTransactions[i];
+				dataGridView1->Rows->Add(transaction->type, transaction->amount, transaction->sender, transaction->receiver);
+			}
 
 
-
-		  int count = 10; // Make sure to set this to a value or parse it from Customer input
-
-		  List<Transaction^>^ lastTransactions = gcnew List<Transaction^>();
-
-		  // Retrieve the last 'count' transactions
-		  int remaining = count; // Ensure 'count' is assigned a value
-		  for each (Transaction ^ transaction in customer->transactions) {
-			  lastTransactions->Add(transaction);
-			  remaining--;
-			  if (remaining == 0) {
-				  break;
-			  }
-		  }
-		  // Clear existing data in the DataGridView
-		  dataGridView1->AllowUserToAddRows = false;
-
-		  while (dataGridView1->Rows->Count > 0) {
-			  dataGridView1->Rows->RemoveAt(0);
-		  }
-
-		  // Populate the DataGridView with the last transactions in reverse order
-		  for (int i = 0; i < lastTransactions->Count; i++) {
-			  Transaction^ transaction = lastTransactions[i];
-			  dataGridView1->Rows->Add(transaction->type, transaction->amount, transaction->sender, transaction->receiver);
-		  }
+		
 
 
 	}
 
 public: void loadInfo() {
-	accountNumber->Text = customer->GetId().ToString();
+	accountNumber->Text = "Account Balance: " + customer->GetId().ToString();
 
 		name->Text = "Name: "+ customer->GetName();
-		//accountBalance->Text = "Account Balance"+customer->GetAccountBalance().ToString();
+		accountBalance->Text = "Account Balance: "+customer->GetAccountBalance().ToString();
 		address->Text = "Address: "+customer->GetAddress();
-		phoneNumber->Text ="Phone Number"+ customer->GetPhoneNumber();
+		phoneNumber->Text ="Phone Number: "+ customer->GetPhoneNumber();
 		email->Text = "Email: "+customer->GetEmail();
 		//lastTransactions();
 
@@ -652,14 +622,21 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		}
 		else {
 			MessageBox::Show("Not Valid Amount", "Send failed ");
+			return;
 
 		}
 
 	}
 	else {
 		MessageBox::Show("Cann't Find This Account", "Account Not Found");
+		return;
+
 	}
+	accountBalance->Text = "Account Balance" + customer->GetAccountBalance().ToString();
+
 	lastTransactions();
+	return;
+
 
 }
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -674,9 +651,13 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		}
 		else {
 			MessageBox::Show("The Amount is grater than Your account balance.\nYour Account Balance is:" + customer->GetAccountBalance(), "Withdrawal failed ");
-
+			return;
 		}
+		accountBalance->Text = "Account Balance" + customer->GetAccountBalance().ToString();
+
 		lastTransactions();
+		return;
+
 	}
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	float amount;
@@ -685,13 +666,19 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 	
 		if (customer->deposit(amount)) {
 			MessageBox::Show("Your Account Balance Now is: " + customer->GetAccountBalance(), "Deposit Successful");
-
+			
 		}
 		else {
 			MessageBox::Show("Not Valid Amount", "Withdrawal failed ");
+			return;
 
 		}
+		accountBalance->Text = "Account Balance" + customer->GetAccountBalance().ToString();
+
 		lastTransactions();
+		return;
+
+
 }
 private: System::Void CustomerForm_Load(System::Object^ sender, System::EventArgs^ e) {
 }

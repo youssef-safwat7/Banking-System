@@ -23,8 +23,7 @@ int main(cli::array<System::String^>^ args) // Change 'void' to 'int' for the ma
     if (taller != nullptr && form.role == "Taller") {
         BankingSystem::TallerForm tallerForm; 
         tallerForm.ShowDialog();
-      /*  BankingSystem::registrationForm regForm; 
-        regForm.ShowDialog();*/
+     
     }
     else if (admin != nullptr && form.role == "Admin") {
         BankingSystem::AdminForm adminForm; // Change 'AdminForm' to 'adminForm'

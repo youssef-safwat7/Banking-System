@@ -252,6 +252,7 @@ namespace BankingSystem {
 		public: String^ role;
 		public: int id;
 
+			 
 
 	private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -315,7 +316,10 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 					 reader->IsDBNull(7) ? 0.0f : Convert::ToSingle(reader->GetValue(7)));
 				
 				// id = reader->GetInt32(0);
+				 if (reader->GetInt32(0) == 0) {
+					 MessageBox::Show("There Error");
 
+				 }
 				 this->Close();
 			 }
 			 else {

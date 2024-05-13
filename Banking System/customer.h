@@ -37,7 +37,7 @@ public:
     Stack<Transaction^>^ transactions;
 
     Customer(int id ,String^ name, String^ email, String^ password,int age, String^ phoneNumber, String^ address,float accountBalance) :id(id), name(name),email(email),
-        password(password),phoneNumber(phoneNumber),address(address),accountBalance(0){
+        password(password),phoneNumber(phoneNumber),address(address),accountBalance(accountBalance) , age(age){
         transactions = gcnew Stack<Transaction^>();
     }
     Customer() {
