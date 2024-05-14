@@ -19,7 +19,7 @@ namespace BankingSystem {
 	public ref class CustomerForm : public System::Windows::Forms::Form
 	{
 	public:
-		
+
 
 		CustomerForm(Customer^ customer_)
 		{
@@ -28,7 +28,7 @@ namespace BankingSystem {
 			loadInfo();
 			lastTransactions();
 
-		
+
 			//TODO: Add the constructor code here
 			//
 		}
@@ -39,7 +39,7 @@ namespace BankingSystem {
 		/// </summary>
 		~CustomerForm()
 		{
-			MessageBox::Show("~CustomerForm" );
+			MessageBox::Show("~CustomerForm");
 
 			try
 			{
@@ -47,7 +47,7 @@ namespace BankingSystem {
 				SqlConnection^ sqlConn = gcnew SqlConnection(connString);
 				sqlConn->Open();
 
-				
+
 
 				// Update Customer information
 				SqlCommand^ updateUserCommand;
@@ -59,18 +59,18 @@ namespace BankingSystem {
 				updateUserCommand->Parameters->AddWithValue("@id", customer->GetId());
 
 				// Execute the query
-				 updateUserCommand->ExecuteNonQuery();
+				updateUserCommand->ExecuteNonQuery();
 
-				
-				 MessageBox::Show("~CustomerForm"+ customer->GetAccountBalance());
+
+				MessageBox::Show("~CustomerForm" + customer->GetAccountBalance());
 
 
 				// Insert transactions
 				SqlCommand^ insertTransactionCommand;
 
-				while (customer->transactions->Count > 0)
+				while (customer->transactions->GetSize() > 0)
 				{
-					Transaction^ transaction = customer->transactions->Pop();
+					Transaction^ transaction = customer->transactions->pop();
 					String^ insertTransactionQuery = "INSERT INTO transactions (id, sender, receiver, amount, type) VALUES (@id, @sender, @receiver, @amount, @type)";
 					insertTransactionCommand = gcnew SqlCommand(insertTransactionQuery, sqlConn);
 					insertTransactionCommand->Parameters->AddWithValue("@id", transaction->id);
@@ -528,42 +528,64 @@ namespace BankingSystem {
 
 		if (loadTransactions) {
 			String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-			SqlConnection sqlConn(connString);
-			sqlConn.Open();
+			SqlConnection^ sqlConn = gcnew SqlConnection(connString);
+			sqlConn->Open();
 
 			// Populate users
 			String^ sqlQuery_trans = "SELECT * FROM transactions WHERE id=@id";
-			SqlCommand command(sqlQuery_trans, % sqlConn);
-			command.Parameters->AddWithValue("@id", customer->GetId());
-			SqlDataReader^ reader_trans = command.ExecuteReader();
+			SqlCommand^ command = gcnew SqlCommand(sqlQuery_trans, sqlConn);
+			command->Parameters->AddWithValue("@id", customer->GetId());
+			SqlDataReader^ reader_trans = command->ExecuteReader();
 
 			while (reader_trans->Read())
 			{
-				
-					customer->transactions->Push(gcnew Transaction(reader_trans->GetInt32(0), reader_trans->IsDBNull(1) ? 0.0f : Convert::ToSingle(reader_trans->GetValue(1)),
-						reader_trans->GetString(2), reader_trans->GetInt32(3), reader_trans->GetInt32(4)));
-				
+				customer->transactions->push(gcnew Transaction(reader_trans->GetInt32(0), reader_trans->IsDBNull(1) ? 0.0f : Convert::ToSingle(reader_trans->GetValue(1)),
+					reader_trans->GetString(2), reader_trans->GetInt32(3), reader_trans->GetInt32(4)));
 			}
 
+			// Close reader before reusing the connection
 			reader_trans->Close();
-			sqlConn.Close();
+
+			// Reopen connection
+			sqlConn->Open();
+
+			String^ sqlQuery = "DELETE FROM transactions WHERE id=@id";
+			SqlCommand^ transCommand = gcnew SqlCommand(sqlQuery, sqlConn);
+			transCommand->Parameters->AddWithValue("@id", customer->GetId());
+			int rowsAffected_trans = transCommand->ExecuteNonQuery();
+
+			while (rowsAffected_trans > 0)
+			{
+				rowsAffected_trans = command->ExecuteNonQuery();
+			}
+
+			sqlConn->Close();
 
 			loadTransactions = false;
 		}
 
 
-			int count = 10; // Make sure to set this to a value or parse it from Customer input
 
-			List<Transaction^>^ lastTransactions = gcnew List<Transaction^>();
+		int count = 10; // Make sure to set this to a value or parse it from Customer input
 
-			// Retrieve the last 'count' transactions
-			int remaining = count; // Ensure 'count' is assigned a value
-			for each (Transaction ^ transaction in customer->transactions) {
+		List<Transaction^>^ lastTransactions = gcnew List<Transaction^>();
+
+		// Retrieve the last 'count' transactions
+		int remaining = count; // Ensure 'count' is assigned a value
+		int index = 0;
+		if (!customer->transactions->isEmpty()) {
+		
+			Node<Transaction^>^ current = customer->transactions->topNode(); // Start at the top of the stack
+
+			while (current != nullptr) {
+				Transaction^ transaction = current->data;
 				lastTransactions->Add(transaction);
 				remaining--;
+				index++;
 				if (remaining == 0) {
 					break;
 				}
+				current = current->next; // Move to the next node in the stack
 			}
 			// Clear existing data in the DataGridView
 			dataGridView1->AllowUserToAddRows = false;
@@ -578,67 +600,69 @@ namespace BankingSystem {
 				dataGridView1->Rows->Add(transaction->type, transaction->amount, transaction->sender, transaction->receiver);
 			}
 
-
+		}
 		
 
 
+
+
 	}
 
-public: void loadInfo() {
-	accountNumber->Text = "Account Balance: " + customer->GetId().ToString();
+	public: void loadInfo() {
+		accountNumber->Text = "Account Balance: " + customer->GetId().ToString();
 
-		name->Text = "Name: "+ customer->GetName();
-		accountBalance->Text = "Account Balance: "+customer->GetAccountBalance().ToString();
-		address->Text = "Address: "+customer->GetAddress();
-		phoneNumber->Text ="Phone Number: "+ customer->GetPhoneNumber();
-		email->Text = "Email: "+customer->GetEmail();
+		name->Text = "Name: " + customer->GetName();
+		accountBalance->Text = "Account Balance: " + customer->GetAccountBalance().ToString();
+		address->Text = "Address: " + customer->GetAddress();
+		phoneNumber->Text = "Phone Number: " + customer->GetPhoneNumber();
+		email->Text = "Email: " + customer->GetEmail();
 		//lastTransactions();
 
 
-}
-private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	Application::Exit();
+	}
+	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		Application::Exit();
 
-	// Start a new instance of the application
-	System::Diagnostics::Process::Start(Application::ExecutablePath);
-}
+		// Start a new instance of the application
+		System::Diagnostics::Process::Start(Application::ExecutablePath);
+	}
 	public:   BankingSystem::TallerForm form;
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	int from;
-	int to;
-	float amount;
-	Int32::TryParse(this->tbTo->Text, to);
-	float::TryParse(this->tbAmountSend->Text, amount);
-	form.accebter = gcnew Customer;
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		int from;
+		int to;
+		float amount;
+		Int32::TryParse(this->tbTo->Text, to);
+		float::TryParse(this->tbAmountSend->Text, amount);
+		form.accebter = gcnew Customer;
 
-	// Withdraw from -> deposit to
-	// withdraw
-	if (form.customers->TryGetValue(to, form.accebter)) {
-		if (customer->transfer(form.accebter, amount)) {
-			MessageBox::Show("Your Account "  + " Balance Now is: " + customer->GetAccountBalance(), "Sending Successful");
+		// Withdraw from -> deposit to
+		// withdraw
+		if (form.customers->TryGetValue(to, form.accebter)) {
+			if (customer->transfer(form.accebter, amount)) {
+				MessageBox::Show("Your Account " + " Balance Now is: " + customer->GetAccountBalance(), "Sending Successful");
+
+			}
+			else {
+				MessageBox::Show("Not Valid Amount", "Send failed ");
+				return;
+
+			}
 
 		}
 		else {
-			MessageBox::Show("Not Valid Amount", "Send failed ");
+			MessageBox::Show("Cann't Find This Account", "Account Not Found");
 			return;
 
 		}
+		accountBalance->Text = "Account Balance" + customer->GetAccountBalance().ToString();
 
-	}
-	else {
-		MessageBox::Show("Cann't Find This Account", "Account Not Found");
+		lastTransactions();
 		return;
 
+
 	}
-	accountBalance->Text = "Account Balance" + customer->GetAccountBalance().ToString();
-
-	lastTransactions();
-	return;
-
-
-}
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
 
 		float amount;
@@ -659,14 +683,14 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		return;
 
 	}
-private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-	float amount;
-	float::TryParse(this->tbAmountDeposit->Text, amount);
+	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+		float amount;
+		float::TryParse(this->tbAmountDeposit->Text, amount);
 
-	
+
 		if (customer->deposit(amount)) {
 			MessageBox::Show("Your Account Balance Now is: " + customer->GetAccountBalance(), "Deposit Successful");
-			
+
 		}
 		else {
 			MessageBox::Show("Not Valid Amount", "Withdrawal failed ");
@@ -679,12 +703,12 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 		return;
 
 
-}
-private: System::Void CustomerForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void accountBalance_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void groupBox4_Enter_1(System::Object^ sender, System::EventArgs^ e) {
-}
-};
+	}
+	private: System::Void CustomerForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void accountBalance_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void groupBox4_Enter_1(System::Object^ sender, System::EventArgs^ e) {
+	}
+	};
 }

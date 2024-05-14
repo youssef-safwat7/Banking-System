@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include <stack>
+#include "Stack.h"
 #using <System.dll>
 
 #include <sqltypes.h>
@@ -20,6 +20,7 @@ public:
      Transaction(int id, float amount, String^ type, int sender , int receiver ) :id(id), amount(amount), type(type), sender(sender), receiver(receiver) {
 
      }
+    
 };
 
 public ref class Customer {
@@ -34,14 +35,14 @@ private:
     String^ address;
 
 public:
-    Stack<Transaction^>^ transactions;
+    stack<Transaction^>^ transactions;
 
     Customer(int id ,String^ name, String^ email, String^ password,int age, String^ phoneNumber, String^ address,float accountBalance) :id(id), name(name),email(email),
         password(password),phoneNumber(phoneNumber),address(address),accountBalance(accountBalance) , age(age){
-        transactions = gcnew Stack<Transaction^>();
+        transactions = gcnew stack<Transaction^>();
     }
     Customer() {
-        transactions = gcnew Stack<Transaction^>();
+        transactions = gcnew stack<Transaction^>();
 
     }
   
@@ -114,7 +115,7 @@ public:
             return false;
         }
         accountBalance -= amount;
-        transactions->Push(gcnew Transaction(id, amount, "withdraw", 0, 0));
+        transactions->push(gcnew Transaction(id, amount, "withdraw", 0, 0));
         return true; 
     }
 
@@ -123,7 +124,7 @@ public:
             return false;
         }
         accountBalance += amount;
-        transactions->Push(gcnew Transaction(id, amount, "deposit", 0, 0));
+        transactions->push(gcnew Transaction(id, amount, "deposit", 0, 0));
 
         return true; 
     }
@@ -135,8 +136,8 @@ public:
 
         accountBalance -= amount;
         receiver->accountBalance += amount;
-        transactions->Push(gcnew Transaction(id, amount, "send", id, receiver->id));
-        receiver->transactions->Push(gcnew Transaction(receiver->id, amount, "receive", id, receiver->id));
+        transactions->push(gcnew Transaction(id, amount, "send", id, receiver->id));
+        receiver->transactions->push(gcnew Transaction(receiver->id, amount, "receive", id, receiver->id));
 
 
         return true; 
