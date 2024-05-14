@@ -110,6 +110,7 @@ public:
     void SetAddress(String^ value) {
         address = value;
     }
+
     bool withdraw(float amount) {
         if (amount > accountBalance || amount <= 0) {
             return false;

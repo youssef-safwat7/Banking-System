@@ -13,9 +13,6 @@ namespace BankingSystem {
 	using namespace System::Drawing;
 	using namespace System::Data::SqlClient;
 
-	/// <summary>
-	/// Summary for CustomerForm
-	/// </summary>
 	public ref class CustomerForm : public System::Windows::Forms::Form
 	{
 	public:
@@ -29,17 +26,12 @@ namespace BankingSystem {
 			lastTransactions();
 
 
-			//TODO: Add the constructor code here
-			//
 		}
-
+		
 	protected:
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
+		
 		~CustomerForm()
 		{
-			MessageBox::Show("~CustomerForm");
 
 			try
 			{
@@ -62,7 +54,6 @@ namespace BankingSystem {
 				updateUserCommand->ExecuteNonQuery();
 
 
-				MessageBox::Show("~CustomerForm" + customer->GetAccountBalance());
 
 
 				// Insert transactions
@@ -543,10 +534,9 @@ namespace BankingSystem {
 					reader_trans->GetString(2), reader_trans->GetInt32(3), reader_trans->GetInt32(4)));
 			}
 
-			// Close reader before reusing the connection
 			reader_trans->Close();
+			sqlConn->Close();
 
-			// Reopen connection
 			sqlConn->Open();
 
 			String^ sqlQuery = "DELETE FROM transactions WHERE id=@id";
@@ -566,16 +556,16 @@ namespace BankingSystem {
 
 
 
-		int count = 10; // Make sure to set this to a value or parse it from Customer input
+		int count = 10; 
 
 		List<Transaction^>^ lastTransactions = gcnew List<Transaction^>();
 
-		// Retrieve the last 'count' transactions
-		int remaining = count; // Ensure 'count' is assigned a value
+		
+		int remaining = count; 
 		int index = 0;
 		if (!customer->transactions->isEmpty()) {
 		
-			Node<Transaction^>^ current = customer->transactions->topNode(); // Start at the top of the stack
+			Node<Transaction^>^ current = customer->transactions->topNode(); 
 
 			while (current != nullptr) {
 				Transaction^ transaction = current->data;
@@ -585,16 +575,16 @@ namespace BankingSystem {
 				if (remaining == 0) {
 					break;
 				}
-				current = current->next; // Move to the next node in the stack
+				current = current->next; 
 			}
-			// Clear existing data in the DataGridView
+
 			dataGridView1->AllowUserToAddRows = false;
 
 			while (dataGridView1->Rows->Count > 0) {
 				dataGridView1->Rows->RemoveAt(0);
 			}
 
-			// Populate the DataGridView with the last transactions in reverse order
+
 			for (int i = 0; i < lastTransactions->Count; i++) {
 				Transaction^ transaction = lastTransactions[i];
 				dataGridView1->Rows->Add(transaction->type, transaction->amount, transaction->sender, transaction->receiver);
@@ -609,14 +599,13 @@ namespace BankingSystem {
 	}
 
 	public: void loadInfo() {
-		accountNumber->Text = "Account Balance: " + customer->GetId().ToString();
+		accountNumber->Text = "Account Number: " + customer->GetId().ToString();
 
 		name->Text = "Name: " + customer->GetName();
 		accountBalance->Text = "Account Balance: " + customer->GetAccountBalance().ToString();
 		address->Text = "Address: " + customer->GetAddress();
 		phoneNumber->Text = "Phone Number: " + customer->GetPhoneNumber();
 		email->Text = "Email: " + customer->GetEmail();
-		//lastTransactions();
 
 
 	}
@@ -625,20 +614,16 @@ namespace BankingSystem {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		Application::Exit();
 
-		// Start a new instance of the application
 		System::Diagnostics::Process::Start(Application::ExecutablePath);
 	}
 	public:   BankingSystem::TallerForm form;
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-		int from;
 		int to;
 		float amount;
 		Int32::TryParse(this->tbTo->Text, to);
 		float::TryParse(this->tbAmountSend->Text, amount);
 		form.accebter = gcnew Customer;
 
-		// Withdraw from -> deposit to
-		// withdraw
 		if (form.customers->TryGetValue(to, form.accebter)) {
 			if (customer->transfer(form.accebter, amount)) {
 				MessageBox::Show("Your Account " + " Balance Now is: " + customer->GetAccountBalance(), "Sending Successful");

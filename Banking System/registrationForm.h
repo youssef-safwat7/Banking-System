@@ -1,12 +1,10 @@
 #pragma once
 #include<Windows.h>
 #include"MainForm.h"
-
+#include"Taller.h"
 #include"customer.h"
 #include <exception>
-//#include"TallerForm.h"
 
-//ref class TallerForm;
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -29,9 +27,10 @@ namespace BankingSystem {
 	public ref class registrationForm : public System::Windows::Forms::Form
 	{
 	public:
-		registrationForm(void)
+		registrationForm(Taller^ taller_)
 		{
 			InitializeComponent();
+			taller = taller_;
 			//
 			//TODO: Add the constructor code here
 			//
@@ -326,17 +325,14 @@ namespace BankingSystem {
 
 		}
 #pragma endregion
+		public: Taller^ taller = nullptr;
 	private: System::Void label5_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-
- //ref class TallerForm;
+;
 
 private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-	// Hide and close the current form
-	this->Hide();
-	this->Close();
 
 	
 }
@@ -357,102 +353,25 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 		String^ address = this->tbAddress->Text;
 		String^ phoneNumber = this->tbPhoneNumber->Text;
 		float accountBalance; 
-		int age; // Initialize age to 0
+		int age; 
 
-		// Try parsing age
 		if (!Int32::TryParse(this->tbAgeReg->Text, age)) {
-			// Age parsing failed, handle the error
 			MessageBox::Show("Please enter a valid age.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}
+
 		if (!float::TryParse(this->tbAccountBalance->Text, accountBalance)) {
-			// Age parsing failed, handle the error
 			MessageBox::Show("Please enter a valid Account Balance.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}
-		//Int32::TryParse(this->tbAge->Text, age);
+
 		if (email->Length == 0 ||  password->Length==0 || name->Length == 0 || address->Length == 0 || phoneNumber->Length == 0 || age <= 0 || accountBalance < 0) {
 			MessageBox::Show("Please Fill All Required Filled.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}
-		Customer^ customer = gcnew Customer(0,name,email,password,age,phoneNumber,address,accountBalance);
-	
+		taller->AddCustomer(0, name, email, password, age, phoneNumber, address, accountBalance);
 
-
-		int customerId = -1; // Default value in case user ID retrieval fails
-
-		// Connection string to connect to the database
-		String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-		SqlConnection^ sqlConn = gcnew SqlConnection(connString);
-
-		try {
-			sqlConn->Open(); // Open the database connection
-
-			// Check if the email already exists
-			SqlCommand^ checkEmailCommand = gcnew SqlCommand("SELECT COUNT(*) FROM customers WHERE email = @email");
-			checkEmailCommand->Connection = sqlConn;
-			checkEmailCommand->Parameters->AddWithValue("@email", email);
-			int existingEmailCount = Convert::ToInt32(checkEmailCommand->ExecuteScalar());
-
-			if (existingEmailCount > 0) {
-				MessageBox::Show("This Email Already Exists", "Email Not Valid", MessageBoxButtons::OK);
-
-				// Email already exists, handle the error (you can throw an exception or return an error code)
-				return; // Custom error code indicating duplicate email
-			}
-
-			// Add new user information
-			SqlCommand^ addUserCommand = gcnew SqlCommand();
-			addUserCommand->Connection = sqlConn;
-
-			String^ addUserQuery = "INSERT INTO customers (name, email, password, age, phoneNumber, address, accountBalance) "
-				"VALUES (@name, @email, @password, @age, @phoneNumber, @address, @accountBalance); "
-				"SELECT SCOPE_IDENTITY();";
-
-			addUserCommand->CommandText = addUserQuery;
-			addUserCommand->Parameters->AddWithValue("@name", customer->GetName());
-			addUserCommand->Parameters->AddWithValue("@email", customer->GetEmail());
-			addUserCommand->Parameters->AddWithValue("@password", customer->GetPassword());
-			addUserCommand->Parameters->AddWithValue("@age", customer->GetAge());
-			addUserCommand->Parameters->AddWithValue("@phoneNumber", customer->GetPhoneNumber());
-			addUserCommand->Parameters->AddWithValue("@address", customer->GetAddress());
-			addUserCommand->Parameters->AddWithValue("@accountBalance", customer->GetAccountBalance());
-
-			customerId = Convert::ToInt32(addUserCommand->ExecuteScalar());
-
-			if (customerId != -1) {
-				// Here, you can directly add the user to a dictionary
-				Dictionary<int, Customer^>^ customers = gcnew Dictionary<int, Customer^>();
-
-				if (!customers->ContainsKey(customerId)) {
-					customers->Add(customerId, customer);
-					customer->SetId(customerId);
-					MessageBox::Show("Account Created Successfully.\n The Account Number is: "+ customer->GetId(), "New Account Added", MessageBoxButtons::OK);
-					return;
-
-				}
-				else {
-					// Handle the case where the key already exists
-					MessageBox::Show("An account with the same ID already exists.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-				}
-			}
-			else {
-				// Handle the case where userId is not retrieved successfully
-				MessageBox::Show("Failed to retrieve customer ID from the database.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-			}
-
-			sqlConn->Close(); // Close the database connection
-		}
-		catch (SqlException^ ex) {
-			// SQL Exception occurred, handle it (you can log the error or throw it)
-			Console::WriteLine("SQL Exception: " + ex->Message);
-			// Custom error code indicating SQL exception
-		}
-
-		// No need to check if TallerForm is instantiated successfully
-		// Just return after processing
-		return;
-
+		
 	}
 
 
@@ -462,10 +381,8 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 	}
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	// Close the current instance of the application
 	Application::Exit();
 
-	// Start a new instance of the application
 	System::Diagnostics::Process::Start(Application::ExecutablePath);
 }
 private: System::Void label5_Click_1(System::Object^ sender, System::EventArgs^ e) {

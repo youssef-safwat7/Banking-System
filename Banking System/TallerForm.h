@@ -6,7 +6,7 @@
 //#include "MangeForm.h"
 //#include"Taller.h"
 #include"customer.h"
-
+#include"Taller.h"
 
 #include <map>
 #using <System.dll>
@@ -34,9 +34,61 @@ namespace BankingSystem {
 	public ref class TallerForm : public System::Windows::Forms::Form
 	{
 	public:
-		TallerForm(void)
+		TallerForm(Taller^ taller_)
 		{
 			InitializeComponent();
+			taller = taller_;
+
+			try
+			{
+				dataGridView1->Visible = true; // Initially hide the DataGridView
+
+
+
+				String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+
+				// Using a using statement to ensure proper resource management
+				{
+					SqlConnection sqlConn(connString);
+					sqlConn.Open();
+
+					// Populate users
+					String^ sqlQuery = "SELECT * FROM customers";
+					SqlCommand command(sqlQuery, % sqlConn);
+					SqlDataReader^ reader = command.ExecuteReader();
+
+					while (reader->Read())
+					{
+						customer = gcnew Customer(reader->GetInt32(0), reader->GetString(1), reader->GetString(2), reader->GetString(3), reader->GetInt32(4), reader->GetString(5), reader->GetString(6),
+							reader->IsDBNull(7) ? 0.0f : Convert::ToSingle(reader->GetValue(7)));
+
+						customers->Add(customer->GetId(), customer);
+
+					}
+
+					reader->Close(); // Close the reader when done
+					sqlConn.Close();
+					// Populate transactions
+				 // Close the reader when done
+				} // SqlConnection is automatically closed when it goes out of scope
+
+				// Dispose of objects to release resources
+			}
+			catch (SqlException^ ex)
+			{
+				// Handle SQL exceptions
+				MessageBox::Show("Error: " + ex->Message);
+			}
+			catch (Exception^ ex)
+			{
+				// Handle other exceptions
+				MessageBox::Show("Error: " + ex->Message);
+			}
+		}
+		TallerForm()
+		{
+			InitializeComponent();
+			
 
 			try
 			{
@@ -750,9 +802,10 @@ namespace BankingSystem {
 
 		}
 #pragma endregion
-
+	public:	  Taller^ taller = nullptr;
 	public: Customer^ customer = nullptr;
 	public:	  Customer^ accebter = nullptr;
+
 
 
 
@@ -775,7 +828,7 @@ namespace BankingSystem {
 	private:System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Hide();
 		this->Close();
-		BankingSystem::registrationForm regForm;
+		BankingSystem::registrationForm regForm(taller);
 		regForm.ShowDialog();
 
 	}
@@ -911,7 +964,9 @@ namespace BankingSystem {
 
 			if (customers->TryGetValue(accountNumber, customer)) {
 
-				MessageBox::Show("Account Balance is: " + (customer->GetAccountBalance()), "Checking Account Balance");
+				MessageBox::Show("Account Balance is: " + (taller->GetCustomerAccountBalance(customer)), "Checking Account Balance");
+				lastTransactions(accountNumber);
+
 
 			}
 			else {
@@ -924,7 +979,6 @@ namespace BankingSystem {
 
 
 		}
-		lastTransactions(accountNumber);
 
 
 	}
@@ -936,7 +990,7 @@ namespace BankingSystem {
 		float::TryParse(this->tbAmountDeposit->Text, amount);
 
 		if (customers->TryGetValue(accountNumber, customer)) {
-			if (customer->deposit(amount)) {
+			if (taller->deposit(customer,amount) ){
 				MessageBox::Show("Account Balance now is: " + customer->GetAccountBalance(), "Deposit Successful");
 
 			}
@@ -964,22 +1018,18 @@ namespace BankingSystem {
 		float::TryParse(this->tbAmountTransfer->Text, amount);
 		accebter = gcnew Customer;
 
-		// Withdraw from -> deposit to
-		// withdraw
+		
 		if (customers->TryGetValue(from, customer) && customers->TryGetValue(to, accebter)) {
-			if (customer->transfer(accebter, amount)) {
+			if (taller->transfer(customer, accebter, amount) ){
 				MessageBox::Show("Account Numeber " + from + " Balance now is: " + customer->GetAccountBalance() + "\nAccount Numeber " + to + " Balance now is: " + accebter->GetAccountBalance(), "Transfer Successful");
 
 			}
-			else {
-				MessageBox::Show("Not Valid Amount", "Transfer failed ");
-
-			}
-
 		}
+		
 		else {
 			MessageBox::Show("Cann't Find This Account", "Account Not Found");
 		}
+		
 
 		lastTransactions(from);
 
@@ -993,12 +1043,12 @@ namespace BankingSystem {
 		float::TryParse(this->tbAmountWithdraw->Text, amount);
 
 		if (customers->TryGetValue(accountNumber, customer)) {
-			if (customer->withdraw(amount)) {
-				MessageBox::Show("Account Balance now is: " + customer->GetAccountBalance(), "Withdrawal Successful");
+			if (taller->withdraw(customer,amount)) {
+				MessageBox::Show("Account Balance now is: " + (taller->GetCustomerAccountBalance(customer)), "Withdrawal Successful");
 
 			}
 			else {
-				MessageBox::Show("The Amount is grater than the account balance.\nThe Account Balance is:" + customer->GetAccountBalance(), "Withdrawal failed ");
+				MessageBox::Show("The Amount is grater than the account balance.\nThe Account Balance is:" + (taller->GetCustomerAccountBalance(customer)), "Withdrawal failed ");
 
 			}
 		}
@@ -1015,55 +1065,8 @@ namespace BankingSystem {
 
 		if (parseSuccess)
 		{
-			try
-			{
-				String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=60";
-
-				SqlConnection sqlConn(connString);
-				sqlConn.Open();
-
-				// Populate users
-
-				String^ sqlQuery = "DELETE FROM customers WHERE id = @id;";
-				SqlCommand command(sqlQuery, % sqlConn);
-
-				command.Parameters->AddWithValue("@id", id);
-				int rowsAffected = command.ExecuteNonQuery();
-				//command.Parameters->AddWithValue("@id", id);
-
-				if (rowsAffected > 0)
-				{
-					// Customer deleted successfully
-					customers->Remove(id);
-					MessageBox::Show(" Customer deleted successfully ");
-
-				}
-				else
-				{
-					// Customer with the provided ID does not exist
-					MessageBox::Show("Customer with ID " + id + " does not exist.");
-				}
-				sqlQuery = "DELETE FROM transactions WHERE id = @id;";
-				SqlCommand transCommand(sqlQuery, % sqlConn);
-
-				transCommand.Parameters->AddWithValue("@id", id);
-				int rowsAffected_trans = transCommand.ExecuteNonQuery();
-				while (rowsAffected_trans > 0)
-				{
-
-					rowsAffected_trans = command.ExecuteNonQuery();
-				}
-			}
-			catch (SqlException^ ex)
-			{
-				// Handle SQL exceptions
-				MessageBox::Show("SQL Error: " + ex->Message);
-			}
-			catch (Exception^ ex)
-			{
-				// Handle other exceptions
-				MessageBox::Show("Error: " + ex->Message);
-			}
+			taller->DeleteCustomer(id);
+			customers->Remove(id);
 		}
 		else
 		{

@@ -3,6 +3,7 @@
 #include <exception>
 #include "MainForm.h" // Include the header file for MainForm
 #include <string>
+#include"Admin.h"
 
 namespace BankingSystem {
 
@@ -23,8 +24,10 @@ namespace BankingSystem {
 	public ref class AdminForm : public System::Windows::Forms::Form
 	{
 	public:
-		AdminForm(void)
+		AdminForm(Admin^ admin_)
 		{
+			admin = admin_;
+
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -293,6 +296,8 @@ namespace BankingSystem {
 
 		}
 #pragma endregion
+	public: Admin^ admin;
+
 	private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -300,92 +305,13 @@ namespace BankingSystem {
 		String^ password = tbPassword->Text;
 		String^ name = tbName->Text;
 		String^ phoneNumber = tbPhoneNumber->Text;
-
-		try
-		{
-			// Connection string to connect to the database
-			String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-
-			// Establishing connection
-			SqlConnection sqlConn(connString);
-			sqlConn.Open();
-
-			// SQL command to insert a new user
-			String^ addUserQuery = "INSERT INTO tallers (name, email, password, phoneNumber) "
-				"VALUES (@name, @email, @password, @phoneNumber);";
-
-			// Creating SQL command object and assigning connection
-			SqlCommand^ addUserCommand = gcnew SqlCommand(addUserQuery, % sqlConn);
-
-			// Adding parameters with explicit data types
-			addUserCommand->Parameters->Add("@name", name);
-			addUserCommand->Parameters->Add("@email", email);
-			addUserCommand->Parameters->Add("@password", password);
-			addUserCommand->Parameters->Add("@phoneNumber", phoneNumber);
-
-			// Executing the command
-			int rowsAffected = addUserCommand->ExecuteNonQuery();
-
-			if (rowsAffected > 0)
-			{
-				// Displaying success message if insertion is successful
-				MessageBox::Show("Account Created Successfully.", "New Account Added", MessageBoxButtons::OK);
-			}
-			else
-			{
-				MessageBox::Show("Failed to add new account.");
-			}
-		}
-		catch (SqlException^ ex)
-		{
-			// Handling SQL exceptions
-			MessageBox::Show("SQL Error: " + ex->Message);
-		}
-		catch (Exception^ ex)
-		{
-			// Handling other exceptions
-			MessageBox::Show("Error: " + ex->Message);
-		}
+		admin->AddTaller(name,email,password,phoneNumber);
+		
 	}
 private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
 	String^ email = tbEmailDelete->Text;
 	
-		try
-		{
-			String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-
-			SqlConnection sqlConn(connString);
-			sqlConn.Open();
-
-			// Populate users
-			String^ sqlQuery = "DELETE FROM tallers WHERE email = @email;";
-			SqlCommand command(sqlQuery, % sqlConn);
-			command.Parameters->AddWithValue("@email", email);
-			int rowsAffected = command.ExecuteNonQuery();
-
-			if (rowsAffected > 0)
-			{
-				// User deleted successfully
-				MessageBox::Show(" Taller deleted successfully ");
-
-			}
-			else
-			{
-				// User with the provided ID does not exist
-				MessageBox::Show("Taller with Email " + email + " does not exist.");
-			}
-		}
-		catch (SqlException^ ex)
-		{
-			// Handle SQL exceptions
-			MessageBox::Show("SQL Error: " + ex->Message);
-		}
-		catch (Exception^ ex)
-		{
-			// Handle other exceptions
-			MessageBox::Show("Error: " + ex->Message);
-		}
-	
+	admin->DeleteTaller(email);
 
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {

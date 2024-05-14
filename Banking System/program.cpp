@@ -1,15 +1,14 @@
 #include "MainForm.h"
 #include "TallerForm.h"
-//#include "registrationForm.h"
 #include "customer.h" 
-#include "CustomerForm.h" // Include the customer header file to access the customer class
+#include "CustomerForm.h" 
 #include"Admin.h"
 #include"Taller.h"
 using namespace System;
 using namespace System::Windows::Forms;
 [STAThread]
 
-int main(cli::array<System::String^>^ args) // Change 'void' to 'int' for the main function
+int main(cli::array<System::String^>^ args) 
 {
     Application::EnableVisualStyles();
     Application::SetCompatibleTextRenderingDefault(false);
@@ -21,19 +20,19 @@ int main(cli::array<System::String^>^ args) // Change 'void' to 'int' for the ma
     Admin^ admin = form.admin;
 
     if (taller != nullptr && form.role == "Taller") {
-        BankingSystem::TallerForm tallerForm; 
+        BankingSystem::TallerForm tallerForm(taller); 
         tallerForm.ShowDialog();
      
     }
     else if (admin != nullptr && form.role == "Admin") {
-        BankingSystem::AdminForm adminForm; // Change 'AdminForm' to 'adminForm'
+        BankingSystem::AdminForm adminForm(admin); 
         adminForm.ShowDialog();
     }
     else if (customer != nullptr && form.role == "Customer") {
-        BankingSystem::CustomerForm customerForm(form.customer); // Change 'AdminForm' to 'adminForm'
+        BankingSystem::CustomerForm customerForm(customer); 
         customerForm.ShowDialog();
     }
 
-    return 0; // Add a return statement to indicate successful execution
+    return 0; 
 }
 
