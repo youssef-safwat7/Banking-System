@@ -41,9 +41,9 @@ namespace BankingSystem {
 			try
 			{
 				dataGridView1->Visible = true; // Initially hide the DataGridView
-				
-			
-				
+
+
+
 				String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
 				// Using a using statement to ensure proper resource management
@@ -60,9 +60,9 @@ namespace BankingSystem {
 					{
 						customer = gcnew Customer(reader->GetInt32(0), reader->GetString(1), reader->GetString(2), reader->GetString(3), reader->GetInt32(4), reader->GetString(5), reader->GetString(6),
 							reader->IsDBNull(7) ? 0.0f : Convert::ToSingle(reader->GetValue(7)));
-					
-							customers->Add(customer->GetId(), customer);
-						
+
+						customers->Add(customer->GetId(), customer);
+
 					}
 
 					reader->Close(); // Close the reader when done
@@ -112,9 +112,9 @@ namespace BankingSystem {
 				SqlCommand^ insertTransactionCommand;
 				for each (Customer ^ customer in customers->Values)
 				{
-					while (customer->transactions->Count > 0)
+					while (customer->transactions->GetSize() > 0)
 					{
-						Transaction^ transaction = customer->transactions->Pop();
+						Transaction^ transaction = customer->transactions->pop();
 						String^ insertTransactionQuery = "INSERT INTO transactions (id, sender, receiver, amount, type) VALUES (@id, @sender, @receiver, @amount, @type)";
 						insertTransactionCommand = gcnew SqlCommand(insertTransactionQuery, sqlConn);
 						insertTransactionCommand->Parameters->AddWithValue("@id", transaction->id);
@@ -190,41 +190,41 @@ namespace BankingSystem {
 
 	private: System::Windows::Forms::Button^ logOut;
 
-private: System::Windows::Forms::DataGridView^ dataGridView1;
-private: System::Windows::Forms::Button^ bCheck;
-private: System::Windows::Forms::TextBox^ tbAccountNumCheck;
-private: System::Windows::Forms::Label^ label10;
-private: System::Windows::Forms::TextBox^ tbAmountDeposit;
-private: System::Windows::Forms::TextBox^ tbAccountNumDeposit;
-private: System::Windows::Forms::Label^ label5;
-private: System::Windows::Forms::Label^ label6;
-private: System::Windows::Forms::Button^ button4;
-private: System::Windows::Forms::TextBox^ tbAmountWithdraw;
-private: System::Windows::Forms::TextBox^ tbAccountNumWithdraw;
-private: System::Windows::Forms::Label^ label7;
-private: System::Windows::Forms::Label^ label8;
-private: System::Windows::Forms::Button^ button7;
-private: System::Windows::Forms::GroupBox^ groupBox1;
-private: System::Windows::Forms::TextBox^ tbAmountTransfer;
-private: System::Windows::Forms::Label^ label4;
-private: System::Windows::Forms::TextBox^ tbTo;
-private: System::Windows::Forms::TextBox^ tbFrom;
-private: System::Windows::Forms::Button^ button2;
-private: System::Windows::Forms::Label^ label3;
-private: System::Windows::Forms::Label^ label2;
+	private: System::Windows::Forms::DataGridView^ dataGridView1;
+	private: System::Windows::Forms::Button^ bCheck;
+	private: System::Windows::Forms::TextBox^ tbAccountNumCheck;
+	private: System::Windows::Forms::Label^ label10;
+	private: System::Windows::Forms::TextBox^ tbAmountDeposit;
+	private: System::Windows::Forms::TextBox^ tbAccountNumDeposit;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Button^ button4;
+	private: System::Windows::Forms::TextBox^ tbAmountWithdraw;
+	private: System::Windows::Forms::TextBox^ tbAccountNumWithdraw;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Button^ button7;
+	private: System::Windows::Forms::GroupBox^ groupBox1;
+	private: System::Windows::Forms::TextBox^ tbAmountTransfer;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::TextBox^ tbTo;
+	private: System::Windows::Forms::TextBox^ tbFrom;
+	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Label^ label2;
 
 
 
 
-private: System::Windows::Forms::GroupBox^ groupBox5;
-private: System::Windows::Forms::Button^ button9;
-private: System::Windows::Forms::TextBox^ tbAccountNumDelete;
+	private: System::Windows::Forms::GroupBox^ groupBox5;
+	private: System::Windows::Forms::Button^ button9;
+	private: System::Windows::Forms::TextBox^ tbAccountNumDelete;
 
-private: System::Windows::Forms::Label^ label1;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Type;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Amount;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Sender;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ Receiver;
+	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Type;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Amount;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Sender;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Receiver;
 
 
 
@@ -257,7 +257,7 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Receiver;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -751,321 +751,330 @@ private: System::Windows::Forms::DataGridViewTextBoxColumn^ Receiver;
 		}
 #pragma endregion
 
-public: Customer^ customer = nullptr;
-public:	  Customer^ accebter = nullptr;
+	public: Customer^ customer = nullptr;
+	public:	  Customer^ accebter = nullptr;
 
 
 
 
-static Dictionary<int, Customer^>^ customers = gcnew Dictionary<int, Customer^>();
+		  static Dictionary<int, Customer^>^ customers = gcnew Dictionary<int, Customer^>();
 
-		
-	 
+
+
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-}
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 
-private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e) {
-}
+	}
 
-private:System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
-	this->Hide();
-	this->Close();
-	BankingSystem::registrationForm regForm;
-	regForm.ShowDialog();
+	private: System::Void groupBox4_Enter(System::Object^ sender, System::EventArgs^ e) {
+	}
+
+	private:System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Hide();
+		this->Close();
+		BankingSystem::registrationForm regForm;
+		regForm.ShowDialog();
 
 	}
 
 
 
-private: System::Void TallerForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void groupBox2_Enter(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-}
+	private: System::Void TallerForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void groupBox2_Enter(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
 
-private: System::Void logOut_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-}
-private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	}
 
-}
+	private: System::Void logOut_Click(System::Object^ sender, System::EventArgs^ e) {
 
-private: System::Void logOut_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	// Close the current instance of the application
-	Application::Exit();
+	}
+	private: System::Void button3_Click_1(System::Object^ sender, System::EventArgs^ e) {
 
-	// Start a new instance of the application
-	System::Diagnostics::Process::Start(Application::ExecutablePath);
-}
-private: System::Void tbAccountNumCheck_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
 
-}
-private: System::Void bCheck_Click(System::Object^ sender, System::EventArgs^ e) {
-	
+	private: System::Void logOut_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		// Close the current instance of the application
+		Application::Exit();
 
+		// Start a new instance of the application
+		System::Diagnostics::Process::Start(Application::ExecutablePath);
+	}
+	private: System::Void tbAccountNumCheck_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
+	}
+	private: System::Void bCheck_Click(System::Object^ sender, System::EventArgs^ e) {
 
 
 
-}
-private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-}
-private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^ e) {
 
-	
-}
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-}
 
-private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
-	
-}
-public: bool loadTransactions = true; 
-public: void lastTransactions(int accountNumber) {
-	if (loadTransactions) {
-		String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-		SqlConnection sqlConn(connString);
-		sqlConn.Open();
+	}
+	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
 
-		// Populate users
-		String^ sqlQuery_trans = "SELECT * FROM transactions";
-		SqlCommand command(sqlQuery_trans, % sqlConn);
-		SqlDataReader^ reader_trans = command.ExecuteReader();
+	}
+	private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^ e) {
 
-		while (reader_trans->Read())
-		{
-			int num_id = reader_trans->GetInt32(0);
-			if (customers->TryGetValue(num_id, customer))
+
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	}
+
+	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	}
+	public: bool loadTransactions = true;
+	public: void lastTransactions(int accountNumber) {
+		if (loadTransactions) {
+			String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+			SqlConnection sqlConn(connString);
+			sqlConn.Open();
+
+			// Populate users
+			String^ sqlQuery_trans = "SELECT * FROM transactions";
+			SqlCommand command(sqlQuery_trans, % sqlConn);
+			SqlDataReader^ reader_trans = command.ExecuteReader();
+
+			while (reader_trans->Read())
 			{
-				customer->transactions->Push(gcnew Transaction(reader_trans->GetInt32(0), reader_trans->IsDBNull(1) ? 0.0f : Convert::ToSingle(reader_trans->GetValue(1)),
-					reader_trans->GetString(2), reader_trans->GetInt32(3), reader_trans->GetInt32(4)));
+				int num_id = reader_trans->GetInt32(0);
+				if (customers->TryGetValue(num_id, customer))
+				{
+					customer->transactions->push(gcnew Transaction(reader_trans->GetInt32(0), reader_trans->IsDBNull(1) ? 0.0f : Convert::ToSingle(reader_trans->GetValue(1)),
+						reader_trans->GetString(2), reader_trans->GetInt32(3), reader_trans->GetInt32(4)));
+				}
 			}
+
+			reader_trans->Close();
+			sqlConn.Close();
+
+			loadTransactions = false;
 		}
-
-		reader_trans->Close();
-		sqlConn.Close();
-
-		loadTransactions = false;
-	}
-
-	if (customers->TryGetValue(accountNumber, customer)) {
-
-
-
-		int count = 10; // Make sure to set this to a value or parse it from Customer input
-
-		List<Transaction^>^ lastTransactions = gcnew List<Transaction^>();
-
-		// Retrieve the last 'count' transactions
-		int remaining = count; // Ensure 'count' is assigned a value
-		for each (Transaction ^ transaction in customer->transactions) {
-			lastTransactions->Add(transaction);
-			remaining--;
-			if (remaining == 0) {
-				break;
-			}
-		}
-		// Clear existing data in the DataGridView
-		dataGridView1->AllowUserToAddRows = false;
-
-		while (dataGridView1->Rows->Count > 0) {
-			dataGridView1->Rows->RemoveAt(0);
-		}
-
-		// Populate the DataGridView with the last transactions in reverse order
-		for (int i = 0; i < lastTransactions->Count; i++) {
-			Transaction^ transaction = lastTransactions[i];
-			dataGridView1->Rows->Add(transaction->type, transaction->amount, transaction->sender, transaction->receiver);
-		}
-
-
-	}
-
-}
-private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
-private: System::Void bCheck_Click_1(System::Object^ sender, System::EventArgs^ e) {
-
-//Check 
-	int accountNumber;
-	if (Int32::TryParse(this->tbAccountNumCheck->Text, accountNumber)) {
-
-
 
 		if (customers->TryGetValue(accountNumber, customer)) {
 
-			MessageBox::Show("Account Balance is: " + (customer->GetAccountBalance()), "Checking Account Balance");
 
+
+			int count = 10; // Make sure to set this to a value or parse it from Customer input
+
+			List<Transaction^>^ lastTransactions = gcnew List<Transaction^>();
+
+			// Retrieve the last 'count' transactions
+			int remaining = count; // Ensure 'count' is assigned a value
+			int index = 0;
+
+			if (!customer->transactions->isEmpty()) {
+
+				Node<Transaction^>^ current = customer->transactions->topNode(); // Start at the top of the stack
+
+				while (current != nullptr) {
+					Transaction^ transaction = current->data;
+					lastTransactions->Add(transaction);
+					remaining--;
+					index++;
+					if (remaining == 0) {
+						break;
+					}
+					current = current->next; // Move to the next node in the stack
+				}
+				// Clear existing data in the DataGridView
+				dataGridView1->AllowUserToAddRows = false;
+
+				while (dataGridView1->Rows->Count > 0) {
+					dataGridView1->Rows->RemoveAt(0);
+				}
+
+				// Populate the DataGridView with the last transactions in reverse order
+				for (int i = 0; i < lastTransactions->Count; i++) {
+					Transaction^ transaction = lastTransactions[i];
+					dataGridView1->Rows->Add(transaction->type, transaction->amount, transaction->sender, transaction->receiver);
+				}
+
+			}
+		}
+
+	}
+	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	}
+	private: System::Void bCheck_Click_1(System::Object^ sender, System::EventArgs^ e) {
+
+		//Check 
+		int accountNumber;
+		if (Int32::TryParse(this->tbAccountNumCheck->Text, accountNumber)) {
+
+
+
+			if (customers->TryGetValue(accountNumber, customer)) {
+
+				MessageBox::Show("Account Balance is: " + (customer->GetAccountBalance()), "Checking Account Balance");
+
+			}
+			else {
+				MessageBox::Show("Cann't Find This Account", "Account Not Found");
+
+			}
+
+
+
+
+
+		}
+		lastTransactions(accountNumber);
+
+
+	}
+	private: System::Void button4_Click_2(System::Object^ sender, System::EventArgs^ e) {
+		// Deposit
+		int accountNumber;
+		float amount;
+		Int32::TryParse(this->tbAccountNumDeposit->Text, accountNumber);
+		float::TryParse(this->tbAmountDeposit->Text, amount);
+
+		if (customers->TryGetValue(accountNumber, customer)) {
+			if (customer->deposit(amount)) {
+				MessageBox::Show("Account Balance now is: " + customer->GetAccountBalance(), "Deposit Successful");
+
+			}
+			else {
+				MessageBox::Show("Not Valid Amount", "Withdrawal failed ");
+
+			}
+		}
+		else {
+			MessageBox::Show("Cann't Find This Account", "Account Not Found");
+
+
+		}
+		lastTransactions(accountNumber);
+
+
+	}
+	private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		//Transfer
+		int from;
+		int to;
+		float amount;
+		Int32::TryParse(this->tbFrom->Text, from);
+		Int32::TryParse(this->tbTo->Text, to);
+		float::TryParse(this->tbAmountTransfer->Text, amount);
+		accebter = gcnew Customer;
+
+		// Withdraw from -> deposit to
+		// withdraw
+		if (customers->TryGetValue(from, customer) && customers->TryGetValue(to, accebter)) {
+			if (customer->transfer(accebter, amount)) {
+				MessageBox::Show("Account Numeber " + from + " Balance now is: " + customer->GetAccountBalance() + "\nAccount Numeber " + to + " Balance now is: " + accebter->GetAccountBalance(), "Transfer Successful");
+
+			}
+			else {
+				MessageBox::Show("Not Valid Amount", "Transfer failed ");
+
+			}
+
+		}
+		else {
+			MessageBox::Show("Cann't Find This Account", "Account Not Found");
+		}
+
+		lastTransactions(from);
+
+
+	}
+	private: System::Void button7_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		//withdraw
+		int accountNumber;
+		float amount;
+		Int32::TryParse(this->tbAccountNumWithdraw->Text, accountNumber);
+		float::TryParse(this->tbAmountWithdraw->Text, amount);
+
+		if (customers->TryGetValue(accountNumber, customer)) {
+			if (customer->withdraw(amount)) {
+				MessageBox::Show("Account Balance now is: " + customer->GetAccountBalance(), "Withdrawal Successful");
+
+			}
+			else {
+				MessageBox::Show("The Amount is grater than the account balance.\nThe Account Balance is:" + customer->GetAccountBalance(), "Withdrawal failed ");
+
+			}
 		}
 		else {
 			MessageBox::Show("Cann't Find This Account", "Account Not Found");
 
 		}
-
-
-
-
+		lastTransactions(accountNumber);
 
 	}
-	lastTransactions(accountNumber);
+	private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {
+		int id;
+		bool parseSuccess = Int32::TryParse(this->tbAccountNumDelete->Text, id);
 
-
-}
-private: System::Void button4_Click_2(System::Object^ sender, System::EventArgs^ e) {
-// Deposit
-	int accountNumber;
-	float amount;
-	Int32::TryParse(this->tbAccountNumDeposit->Text, accountNumber);
-	float::TryParse(this->tbAmountDeposit->Text, amount);
-
-	if (customers->TryGetValue(accountNumber, customer)) {
-		if (customer->deposit(amount)) {
-			MessageBox::Show("Account Balance now is: " + customer->GetAccountBalance(), "Deposit Successful");
-
-		}
-		else {
-			MessageBox::Show("Not Valid Amount", "Withdrawal failed ");
-
-		}
-	}
-	else {
-		MessageBox::Show("Cann't Find This Account", "Account Not Found");
-
-
-	}
-	lastTransactions(accountNumber);
-
-
-}
-private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	//Transfer
-	int from;
-	int to;
-	float amount;
-	Int32::TryParse(this->tbFrom->Text, from);
-	Int32::TryParse(this->tbTo->Text, to);
-	float::TryParse(this->tbAmountTransfer->Text, amount);
-	accebter = gcnew Customer;
-
-	// Withdraw from -> deposit to
-	// withdraw
-	if (customers->TryGetValue(from, customer) && customers->TryGetValue(to, accebter)) {
-		if (customer->transfer(accebter, amount)) {
-			MessageBox::Show("Account Numeber " + from + " Balance now is: " + customer->GetAccountBalance() + "\nAccount Numeber " + to + " Balance now is: " + accebter->GetAccountBalance(), "Transfer Successful");
-
-		}
-		else {
-			MessageBox::Show("Not Valid Amount", "Transfer failed ");
-
-		}
-
-	}
-	else {
-		MessageBox::Show("Cann't Find This Account", "Account Not Found");
-	}
-
-	lastTransactions(from);
-
-
-}
-private: System::Void button7_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	//withdraw
-	int accountNumber;
-	float amount;
-	Int32::TryParse(this->tbAccountNumWithdraw->Text, accountNumber);
-	float::TryParse(this->tbAmountWithdraw->Text, amount);
-
-	if (customers->TryGetValue(accountNumber, customer)) {
-		if (customer->withdraw(amount)) {
-			MessageBox::Show("Account Balance now is: " + customer->GetAccountBalance(), "Withdrawal Successful");
-
-		}
-		else {
-			MessageBox::Show("The Amount is grater than the account balance.\nThe Account Balance is:" + customer->GetAccountBalance(), "Withdrawal failed ");
-
-		}
-	}
-	else {
-		MessageBox::Show("Cann't Find This Account", "Account Not Found");
-
-	}
-	lastTransactions(accountNumber);
-
-}
-private: System::Void button9_Click_1(System::Object^ sender, System::EventArgs^ e) {
-	int id;
-	bool parseSuccess = Int32::TryParse(this->tbAccountNumDelete->Text, id);
-
-	if (parseSuccess)
-	{
-		try
+		if (parseSuccess)
 		{
-			String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=60";
-
-			SqlConnection sqlConn(connString);
-			sqlConn.Open();
-
-			// Populate users
-		
-			String^ sqlQuery = "DELETE FROM customers WHERE id = @id;";
-			SqlCommand command(sqlQuery, % sqlConn);
-
-			command.Parameters->AddWithValue("@id", id);
-			int rowsAffected = command.ExecuteNonQuery();
-			//command.Parameters->AddWithValue("@id", id);
-
-			if (rowsAffected > 0)
+			try
 			{
-				// Customer deleted successfully
-				customers->Remove(id);
-				MessageBox::Show(" Customer deleted successfully ");
+				String^ connString = "Data Source=Youssef;Initial Catalog=BankingSystem;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=60";
 
+				SqlConnection sqlConn(connString);
+				sqlConn.Open();
+
+				// Populate users
+
+				String^ sqlQuery = "DELETE FROM customers WHERE id = @id;";
+				SqlCommand command(sqlQuery, % sqlConn);
+
+				command.Parameters->AddWithValue("@id", id);
+				int rowsAffected = command.ExecuteNonQuery();
+				//command.Parameters->AddWithValue("@id", id);
+
+				if (rowsAffected > 0)
+				{
+					// Customer deleted successfully
+					customers->Remove(id);
+					MessageBox::Show(" Customer deleted successfully ");
+
+				}
+				else
+				{
+					// Customer with the provided ID does not exist
+					MessageBox::Show("Customer with ID " + id + " does not exist.");
+				}
+				sqlQuery = "DELETE FROM transactions WHERE id = @id;";
+				SqlCommand transCommand(sqlQuery, % sqlConn);
+
+				transCommand.Parameters->AddWithValue("@id", id);
+				int rowsAffected_trans = transCommand.ExecuteNonQuery();
+				while (rowsAffected_trans > 0)
+				{
+
+					rowsAffected_trans = command.ExecuteNonQuery();
+				}
 			}
-			else
+			catch (SqlException^ ex)
 			{
-				// Customer with the provided ID does not exist
-				MessageBox::Show("Customer with ID " + id + " does not exist.");
+				// Handle SQL exceptions
+				MessageBox::Show("SQL Error: " + ex->Message);
 			}
-			 sqlQuery = "DELETE FROM transactions WHERE id = @id;";
-			 SqlCommand transCommand(sqlQuery, % sqlConn);
-
-			 transCommand.Parameters->AddWithValue("@id", id);
-			int rowsAffected_trans = transCommand.ExecuteNonQuery();
-			while (rowsAffected_trans > 0)
+			catch (Exception^ ex)
 			{
-
-				rowsAffected_trans = command.ExecuteNonQuery();
+				// Handle other exceptions
+				MessageBox::Show("Error: " + ex->Message);
 			}
 		}
-		catch (SqlException^ ex)
+		else
 		{
-			// Handle SQL exceptions
-			MessageBox::Show("SQL Error: " + ex->Message);
+			// Parsing of ID failed
+			MessageBox::Show("Invalid ID format.");
 		}
-		catch (Exception^ ex)
-		{
-			// Handle other exceptions
-			MessageBox::Show("Error: " + ex->Message);
+		while (dataGridView1->Rows->Count > 0) {
+			dataGridView1->Rows->RemoveAt(0);
 		}
 	}
-	else
-	{
-		// Parsing of ID failed
-		MessageBox::Show("Invalid ID format.");
+	private: System::Void dataGridView1_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	}
-	while (dataGridView1->Rows->Count > 0) {
-		dataGridView1->Rows->RemoveAt(0);
-	}
-}
-private: System::Void dataGridView1_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
-};
+	};
 };

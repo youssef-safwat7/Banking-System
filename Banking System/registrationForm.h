@@ -48,11 +48,11 @@ namespace BankingSystem {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Panel^ panel1;
-	protected:
-	private: System::Windows::Forms::Button^ button8;
 
-	private: System::Windows::Forms::Button^ button1;
+	protected:
+
+
+
 
 	private: System::Windows::Forms::Button^ button5;
 	private: System::Windows::Forms::TextBox^ tbPassword;
@@ -75,6 +75,10 @@ namespace BankingSystem {
 
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::TextBox^ tbAccountBalance;
+	private: System::Windows::Forms::Label^ label8;
+	private: System::Windows::Forms::Button^ button1;
+
 
 	protected:
 
@@ -104,9 +108,6 @@ namespace BankingSystem {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->panel1 = (gcnew System::Windows::Forms::Panel());
-			this->button8 = (gcnew System::Windows::Forms::Button());
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->tbPassword = (gcnew System::Windows::Forms::TextBox());
 			this->label6 = (gcnew System::Windows::Forms::Label());
@@ -121,53 +122,10 @@ namespace BankingSystem {
 			this->tbName = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->panel1->SuspendLayout();
+			this->tbAccountBalance = (gcnew System::Windows::Forms::TextBox());
+			this->label8 = (gcnew System::Windows::Forms::Label());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
-			// 
-			// panel1
-			// 
-			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(66)), static_cast<System::Int32>(static_cast<System::Byte>(80)),
-				static_cast<System::Int32>(static_cast<System::Byte>(107)));
-			this->panel1->Controls->Add(this->button8);
-			this->panel1->Controls->Add(this->button1);
-			this->panel1->Location = System::Drawing::Point(1, -28);
-			this->panel1->Name = L"panel1";
-			this->panel1->Size = System::Drawing::Size(185, 651);
-			this->panel1->TabIndex = 23;
-			// 
-			// button8
-			// 
-			this->button8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->button8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(62)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
-				static_cast<System::Int32>(static_cast<System::Byte>(155)));
-			this->button8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button8->Location = System::Drawing::Point(7, 274);
-			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(166, 74);
-			this->button8->TabIndex = 10;
-			this->button8->Text = L"Main Dashboard";
-			this->button8->UseVisualStyleBackColor = false;
-			this->button8->Click += gcnew System::EventHandler(this, &registrationForm::button8_Click);
-			// 
-			// button1
-			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
-				| System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(62)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
-				static_cast<System::Int32>(static_cast<System::Byte>(155)));
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->button1->Location = System::Drawing::Point(7, 584);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(166, 53);
-			this->button1->TabIndex = 8;
-			this->button1->Text = L"Log Out";
-			this->button1->UseVisualStyleBackColor = false;
-			this->button1->Click += gcnew System::EventHandler(this, &registrationForm::button1_Click);
 			// 
 			// button5
 			// 
@@ -178,7 +136,7 @@ namespace BankingSystem {
 				static_cast<System::Int32>(static_cast<System::Byte>(155)));
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button5->Location = System::Drawing::Point(512, 491);
+			this->button5->Location = System::Drawing::Point(511, 523);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(255, 68);
 			this->button5->TabIndex = 37;
@@ -254,6 +212,7 @@ namespace BankingSystem {
 			this->label5->Size = System::Drawing::Size(1113, 47);
 			this->label5->TabIndex = 29;
 			this->label5->Text = L"Phon Number";
+			this->label5->Click += gcnew System::EventHandler(this, &registrationForm::label5_Click_1);
 			// 
 			// tbEmail
 			// 
@@ -293,12 +252,47 @@ namespace BankingSystem {
 			// 
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 16.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(192, 72);
+			this->label1->Location = System::Drawing::Point(12, 79);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(1010, 52);
+			this->label1->Size = System::Drawing::Size(1172, 52);
 			this->label1->TabIndex = 24;
 			this->label1->Text = L"Create New Account";
 			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// tbAccountBalance
+			// 
+			this->tbAccountBalance->Location = System::Drawing::Point(639, 446);
+			this->tbAccountBalance->Name = L"tbAccountBalance";
+			this->tbAccountBalance->Size = System::Drawing::Size(196, 22);
+			this->tbAccountBalance->TabIndex = 38;
+			// 
+			// label8
+			// 
+			this->label8->AutoSize = true;
+			this->label8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label8->Location = System::Drawing::Point(425, 443);
+			this->label8->Name = L"label8";
+			this->label8->Size = System::Drawing::Size(175, 25);
+			this->label8->TabIndex = 39;
+			this->label8->Text = L"Account Balance";
+			// 
+			// button1
+			// 
+			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(62)), static_cast<System::Int32>(static_cast<System::Byte>(97)),
+				static_cast<System::Int32>(static_cast<System::Byte>(155)));
+			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button1->Location = System::Drawing::Point(12, 531);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(166, 53);
+			this->button1->TabIndex = 8;
+			this->button1->Text = L"Log Out";
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &registrationForm::button1_Click);
 			// 
 			// registrationForm
 			// 
@@ -307,6 +301,9 @@ namespace BankingSystem {
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(233)), static_cast<System::Int32>(static_cast<System::Byte>(233)),
 				static_cast<System::Int32>(static_cast<System::Byte>(235)));
 			this->ClientSize = System::Drawing::Size(1196, 627);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->label8);
+			this->Controls->Add(this->tbAccountBalance);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->tbPassword);
 			this->Controls->Add(this->label6);
@@ -321,11 +318,9 @@ namespace BankingSystem {
 			this->Controls->Add(this->tbName);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->panel1);
 			this->Name = L"registrationForm";
 			this->Text = L"registrationForm";
 			this->Load += gcnew System::EventHandler(this, &registrationForm::registrationForm_Load);
-			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -343,11 +338,7 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 	this->Hide();
 	this->Close();
 
-	// Create an instance of TallerForm
-	//TallerForm^ tallerForm = gcnew TallerForm();
-
-	// Show the TallerForm
-	//tallerForm->Show();
+	
 }
 
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -365,6 +356,7 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 		String^ name = this->tbName->Text;
 		String^ address = this->tbAddress->Text;
 		String^ phoneNumber = this->tbPhoneNumber->Text;
+		float accountBalance; 
 		int age; // Initialize age to 0
 
 		// Try parsing age
@@ -373,12 +365,17 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 			MessageBox::Show("Please enter a valid age.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}
+		if (!float::TryParse(this->tbAccountBalance->Text, accountBalance)) {
+			// Age parsing failed, handle the error
+			MessageBox::Show("Please enter a valid Account Balance.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			return;
+		}
 		//Int32::TryParse(this->tbAge->Text, age);
-		if (email->Length == 0 ||  password->Length==0 || name->Length == 0 || address->Length == 0 || phoneNumber->Length == 0 || age <= 0) {
+		if (email->Length == 0 ||  password->Length==0 || name->Length == 0 || address->Length == 0 || phoneNumber->Length == 0 || age <= 0 || accountBalance < 0) {
 			MessageBox::Show("Please Fill All Required Filled.", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
 			return;
 		}
-		Customer^ customer = gcnew Customer(0,name,email,password,age,phoneNumber,address,0);
+		Customer^ customer = gcnew Customer(0,name,email,password,age,phoneNumber,address,accountBalance);
 	
 
 
@@ -430,7 +427,7 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
 				if (!customers->ContainsKey(customerId)) {
 					customers->Add(customerId, customer);
 					customer->SetId(customerId);
-					MessageBox::Show("Account Created Successfully.", "New Account Added", MessageBoxButtons::OK);
+					MessageBox::Show("Account Created Successfully.\n The Account Number is: "+ customer->GetId(), "New Account Added", MessageBoxButtons::OK);
 					return;
 
 				}
@@ -470,6 +467,8 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	// Start a new instance of the application
 	System::Diagnostics::Process::Start(Application::ExecutablePath);
+}
+private: System::Void label5_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
