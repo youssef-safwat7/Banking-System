@@ -18,23 +18,23 @@
     <ClCompile Include="program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="registrationForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TallerForm.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MangeForm.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="AdminForm.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewInfo.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="CustomerForm.cpp">
       <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Taller.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="customer.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -45,9 +45,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TallerForm.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MangeForm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="AdminForm.h">
@@ -62,13 +59,10 @@
     <ClInclude Include="Admin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ViewInfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="assisst.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CustomerForm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

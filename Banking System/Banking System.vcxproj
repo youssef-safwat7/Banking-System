@@ -27,40 +27,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="AdminForm.cpp" />
+    <ClCompile Include="customer.cpp" />
     <ClCompile Include="CustomerForm.cpp" />
     <ClCompile Include="program.cpp" />
-    <ClCompile Include="MangeForm.cpp" />
-    <ClCompile Include="registrationForm.cpp" />
-    <ClCompile Include="TallerForm.cpp" />
-    <ClCompile Include="ViewInfo.cpp" />
+    <ClCompile Include="Stack.cpp" />
+    <ClCompile Include="Taller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
     <ClInclude Include="AdminForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="assisst.h" />
     <ClInclude Include="CustomerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="MangeForm.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="registrationForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Stack.h" />
     <ClInclude Include="Taller.h" />
     <ClInclude Include="TallerForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="customer.h" />
-    <ClInclude Include="ViewInfo.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AdminForm.resx">
@@ -72,17 +66,11 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MangeForm.resx">
-      <DependentUpon>MangeForm.h</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="registrationForm.resx">
       <DependentUpon>registrationForm.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TallerForm.resx">
       <DependentUpon>TallerForm.h</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewInfo.resx">
-      <DependentUpon>ViewInfo.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup Label="Globals">

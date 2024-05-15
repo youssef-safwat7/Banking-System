@@ -888,7 +888,6 @@ namespace BankingSystem {
 			SqlConnection sqlConn(connString);
 			sqlConn.Open();
 
-			// Populate users
 			String^ sqlQuery_trans = "SELECT * FROM transactions";
 			SqlCommand command(sqlQuery_trans, % sqlConn);
 			SqlDataReader^ reader_trans = command.ExecuteReader();
@@ -913,12 +912,11 @@ namespace BankingSystem {
 
 
 
-			int count = 10; // Make sure to set this to a value or parse it from Customer input
+			int count = 10; 
 
 			List<Transaction^>^ lastTransactions = gcnew List<Transaction^>();
 
-			// Retrieve the last 'count' transactions
-			int remaining = count; // Ensure 'count' is assigned a value
+			int remaining = count; 
 			int index = 0;
 
 			if (!customer->transactions->isEmpty()) {

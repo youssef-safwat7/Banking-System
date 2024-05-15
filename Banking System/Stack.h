@@ -5,6 +5,7 @@
 
 using namespace System;
 
+// Define a generic Node class for the linked list
 generic<typename T>
 public ref class Node {
 public:
@@ -17,7 +18,7 @@ public:
     }
 };
 
-// Template class for Stack
+// Define a generic stack class
 generic<typename T>
 public ref class stack {
 private:
@@ -29,7 +30,7 @@ public:
         size = 0;
     }
 
-
+    // Push an element onto the stack
     void push(T k) {
         Node<T>^ newNode = gcnew Node<T>(k);
         if (isEmpty()) {
@@ -40,9 +41,9 @@ public:
             top = newNode;
         }
         size++;
-
     }
 
+    // Pop an element from the stack
     T pop() {
         if (isEmpty()) {
             throw gcnew InvalidOperationException("Stack is empty");
@@ -55,12 +56,15 @@ public:
         return popped_element;
     }
 
+    // Get the top element of the stack
     T topElement() {
         if (isEmpty()) {
             throw gcnew InvalidOperationException("Stack is empty");
         }
         return top->data;
     }
+
+    // Get the top node of the stack
     Node<T>^ topNode() {
         if (isEmpty()) {
             throw gcnew InvalidOperationException("Stack is empty");
@@ -68,13 +72,17 @@ public:
         return top;
     }
 
+    // Check if the stack is empty
     bool isEmpty() {
         return top == nullptr;
     }
 
+    // Get the size of the stack
     int GetSize() {
         return size;
     }
+
+    // Copy the stack
     stack<T>^ CopyStack() {
         stack<T>^ copiedStack = gcnew stack<T>();
 
@@ -95,6 +103,4 @@ public:
 
         return copiedStack;
     }
-
-
 };

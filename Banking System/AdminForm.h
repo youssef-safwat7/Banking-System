@@ -82,7 +82,7 @@ namespace BankingSystem {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -109,9 +109,6 @@ namespace BankingSystem {
 			this->groupBox5->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// groupBox5
-			// 
 			this->groupBox5->Controls->Add(this->button9);
 			this->groupBox5->Controls->Add(this->tbEmailDelete);
 			this->groupBox5->Controls->Add(this->label3);
@@ -123,9 +120,6 @@ namespace BankingSystem {
 			this->groupBox5->TabIndex = 57;
 			this->groupBox5->TabStop = false;
 			this->groupBox5->Text = L"Delete Taller Account";
-			// 
-			// button9
-			// 
 			this->button9->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
@@ -140,25 +134,16 @@ namespace BankingSystem {
 			this->button9->Text = L"Delete";
 			this->button9->UseVisualStyleBackColor = false;
 			this->button9->Click += gcnew System::EventHandler(this, &AdminForm::button9_Click);
-			// 
-			// tbEmailDelete
-			// 
 			this->tbEmailDelete->Location = System::Drawing::Point(190, 53);
 			this->tbEmailDelete->Name = L"tbEmailDelete";
 			this->tbEmailDelete->Size = System::Drawing::Size(241, 30);
 			this->tbEmailDelete->TabIndex = 14;
-			// 
-			// label3
-			// 
 			this->label3->AutoSize = true;
 			this->label3->Location = System::Drawing::Point(16, 56);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(72, 25);
 			this->label3->TabIndex = 13;
 			this->label3->Text = L"Email:";
-			// 
-			// groupBox1
-			// 
 			this->groupBox1->Controls->Add(this->tbPhoneNumber);
 			this->groupBox1->Controls->Add(this->label7);
 			this->groupBox1->Controls->Add(this->button2);
@@ -177,25 +162,16 @@ namespace BankingSystem {
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Add New Taller";
 			this->groupBox1->Enter += gcnew System::EventHandler(this, &AdminForm::groupBox1_Enter);
-			// 
-			// tbPhoneNumber
-			// 
 			this->tbPhoneNumber->Location = System::Drawing::Point(907, 95);
 			this->tbPhoneNumber->Name = L"tbPhoneNumber";
 			this->tbPhoneNumber->Size = System::Drawing::Size(241, 30);
 			this->tbPhoneNumber->TabIndex = 36;
-			// 
-			// label7
-			// 
 			this->label7->AutoSize = true;
 			this->label7->Location = System::Drawing::Point(712, 95);
 			this->label7->Name = L"label7";
 			this->label7->Size = System::Drawing::Size(162, 25);
 			this->label7->TabIndex = 35;
 			this->label7->Text = L"Phone Number:";
-			// 
-			// button2
-			// 
 			this->button2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
@@ -210,57 +186,36 @@ namespace BankingSystem {
 			this->button2->Text = L"Add";
 			this->button2->UseVisualStyleBackColor = false;
 			this->button2->Click += gcnew System::EventHandler(this, &AdminForm::button2_Click);
-			// 
-			// tbPassword
-			// 
 			this->tbPassword->Location = System::Drawing::Point(907, 164);
 			this->tbPassword->Name = L"tbPassword";
 			this->tbPassword->Size = System::Drawing::Size(241, 30);
 			this->tbPassword->TabIndex = 33;
-			// 
-			// label6
-			// 
 			this->label6->AutoSize = true;
 			this->label6->Location = System::Drawing::Point(712, 164);
 			this->label6->Name = L"label6";
 			this->label6->Size = System::Drawing::Size(113, 25);
 			this->label6->TabIndex = 32;
 			this->label6->Text = L"Password:";
-			// 
-			// tbEmail
-			// 
 			this->tbEmail->Location = System::Drawing::Point(211, 164);
 			this->tbEmail->Name = L"tbEmail";
 			this->tbEmail->Size = System::Drawing::Size(241, 30);
 			this->tbEmail->TabIndex = 31;
-			// 
-			// label5
-			// 
 			this->label5->AutoSize = true;
 			this->label5->Location = System::Drawing::Point(16, 164);
 			this->label5->Name = L"label5";
 			this->label5->Size = System::Drawing::Size(72, 25);
 			this->label5->TabIndex = 30;
 			this->label5->Text = L"Email:";
-			// 
-			// tbName
-			// 
 			this->tbName->Location = System::Drawing::Point(211, 95);
 			this->tbName->Name = L"tbName";
 			this->tbName->Size = System::Drawing::Size(241, 30);
 			this->tbName->TabIndex = 29;
-			// 
-			// label4
-			// 
 			this->label4->AutoSize = true;
 			this->label4->Location = System::Drawing::Point(16, 95);
 			this->label4->Name = L"label4";
 			this->label4->Size = System::Drawing::Size(75, 25);
 			this->label4->TabIndex = 28;
 			this->label4->Text = L"Name:";
-			// 
-			// button1
-			// 
 			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
@@ -275,9 +230,6 @@ namespace BankingSystem {
 			this->button1->Text = L"Log Out";
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &AdminForm::button1_Click);
-			// 
-			// AdminForm
-			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(233)), static_cast<System::Int32>(static_cast<System::Byte>(233)),
@@ -305,20 +257,20 @@ namespace BankingSystem {
 		String^ password = tbPassword->Text;
 		String^ name = tbName->Text;
 		String^ phoneNumber = tbPhoneNumber->Text;
-		admin->AddTaller(name,email,password,phoneNumber);
-		
-	}
-private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
-	String^ email = tbEmailDelete->Text;
-	
-	admin->DeleteTaller(email);
+		admin->AddTaller(name, email, password, phoneNumber);
 
-}
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-	// Close the current instance of the application
-	Application::Exit();
-	// Start a new instance of the application
-	System::Diagnostics::Process::Start(Application::ExecutablePath);
-}
-};
+	}
+	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
+		String^ email = tbEmailDelete->Text;
+
+		admin->DeleteTaller(email);
+
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Close the current instance of the application
+		Application::Exit();
+		// Start a new instance of the application
+		System::Diagnostics::Process::Start(Application::ExecutablePath);
+	}
+	};
 }

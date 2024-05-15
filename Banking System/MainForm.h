@@ -140,14 +140,15 @@ namespace BankingSystem {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->ErrorImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.ErrorImage")));
+			this->pictureBox1->ErrorImage = nullptr;
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
-			this->pictureBox1->InitialImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.InitialImage")));
-			this->pictureBox1->Location = System::Drawing::Point(5, 3);
+			this->pictureBox1->InitialImage = nullptr;
+			this->pictureBox1->Location = System::Drawing::Point(5, -8);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(359, 583);
 			this->pictureBox1->TabIndex = 9;
 			this->pictureBox1->TabStop = false;
+			this->pictureBox1->Click += gcnew System::EventHandler(this, &MainForm::pictureBox1_Click_1);
 			// 
 			// label3
 			// 
@@ -162,6 +163,7 @@ namespace BankingSystem {
 			this->label3->Size = System::Drawing::Size(146, 32);
 			this->label3->TabIndex = 13;
 			this->label3->Text = L"Password";
+			this->label3->Click += gcnew System::EventHandler(this, &MainForm::label3_Click);
 			// 
 			// tbPassword
 			// 
@@ -173,6 +175,7 @@ namespace BankingSystem {
 			this->tbPassword->PasswordChar = '*';
 			this->tbPassword->Size = System::Drawing::Size(333, 22);
 			this->tbPassword->TabIndex = 12;
+			this->tbPassword->TextChanged += gcnew System::EventHandler(this, &MainForm::tbPassword_TextChanged);
 			// 
 			// label2
 			// 
@@ -187,6 +190,7 @@ namespace BankingSystem {
 			this->label2->Size = System::Drawing::Size(91, 32);
 			this->label2->TabIndex = 11;
 			this->label2->Text = L"Email";
+			this->label2->Click += gcnew System::EventHandler(this, &MainForm::label2_Click);
 			// 
 			// tbEmail
 			// 
@@ -209,6 +213,7 @@ namespace BankingSystem {
 			this->label1->Size = System::Drawing::Size(107, 25);
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"Log in as:";
+			this->label1->Click += gcnew System::EventHandler(this, &MainForm::label1_Click_1);
 			// 
 			// cbRole
 			// 
@@ -236,7 +241,6 @@ namespace BankingSystem {
 			this->Controls->Add(this->pictureBox1);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->L);
-			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"MainForm";
 			this->Text = L"MainForm";
 			this->Load += gcnew System::EventHandler(this, &MainForm::MainForm_Load);
@@ -379,6 +383,16 @@ private: System::Void textBox1_TextChanged(System::Object^ sender, System::Event
 }
 private: System::Void cbRole_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
 
+}
+private: System::Void pictureBox1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void tbPassword_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

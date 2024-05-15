@@ -3,9 +3,6 @@
 #include "Stack.h"
 #using <System.dll>
 
-#include <sqltypes.h>
-#include <sql.h>
-#include <sqlext.h>
 using namespace System;
 using namespace System::Collections::Generic;
 using namespace System::Data::SqlClient;
@@ -16,11 +13,8 @@ public:
     int receiver;
     float amount;
     int id;
-     String^ type;
-     Transaction(int id, float amount, String^ type, int sender , int receiver ) :id(id), amount(amount), type(type), sender(sender), receiver(receiver) {
-
-     }
-    
+    String^ type;
+    Transaction(int id, float amount, String^ type, int sender, int receiver);
 };
 
 public ref class Customer {
@@ -37,112 +31,36 @@ private:
 public:
     stack<Transaction^>^ transactions;
 
-    Customer(int id ,String^ name, String^ email, String^ password,int age, String^ phoneNumber, String^ address,float accountBalance) :id(id), name(name),email(email),
-        password(password),phoneNumber(phoneNumber),address(address),accountBalance(accountBalance) , age(age){
-        transactions = gcnew stack<Transaction^>();
-    }
-    Customer() {
-        transactions = gcnew stack<Transaction^>();
+    Customer(int id, String^ name, String^ email, String^ password, int age, String^ phoneNumber, String^ address, float accountBalance);
+    Customer();
 
-    }
-  
-   
-    int GetAge() {
-        return age;
-    }
+    int GetAge();
+    void SetAge(int value);
 
-    void SetAge(int value) {
-        age = value;
-    }
+    int GetId();
+    void SetId(int value);
 
-    int GetId() {
-        return id;
-    }
+    float GetAccountBalance();
+    void SetAccountBalance(float value);
 
-    void SetId(int value) {
-        id = value;
-    }
+    String^ GetEmail();
+    void SetEmail(String^ value);
 
-    float GetAccountBalance() {
-        return accountBalance;
-    }
+    String^ GetPhoneNumber();
+    void SetPhoneNumber(String^ value);
 
-    void SetAccountBalance(float value) {
-        accountBalance = value;
-    }
+    String^ GetPassword();
+    void SetPassword(String^ value);
 
-    String^ GetEmail() {
-        return email;
-    }
+    String^ GetName();
+    void SetName(String^ value);
 
-    void SetEmail(String^ value) {
-        email = value;
-    }
+    String^ GetAddress();
+    void SetAddress(String^ value);
 
-    String^ GetPhoneNumber() {
-        return phoneNumber;
-    }
+    bool withdraw(float amount);
 
-    void SetPhoneNumber(String^ value) {
-        phoneNumber = value;
-    }
+    bool deposit(float amount);
 
-    String^ GetPassword() {
-        return password;
-    }
-
-    void SetPassword(String^ value) {
-        password = value;
-    }
-
-    String^ GetName() {
-        return name;
-    }
-
-    void SetName(String^ value) {
-        name = value;
-    }
-
-    String^ GetAddress() {
-        return address;
-    }
-
-    void SetAddress(String^ value) {
-        address = value;
-    }
-
-    bool withdraw(float amount) {
-        if (amount > accountBalance || amount <= 0) {
-            return false;
-        }
-        accountBalance -= amount;
-        transactions->push(gcnew Transaction(id, amount, "withdraw", 0, 0));
-        return true; 
-    }
-
-    bool deposit(float amount) {
-        if (amount <= 0) {
-            return false;
-        }
-        accountBalance += amount;
-        transactions->push(gcnew Transaction(id, amount, "deposit", 0, 0));
-
-        return true; 
-    }
-
-    bool transfer(Customer^ receiver, float amount) {
-        if (amount <= 0 || amount > accountBalance) {
-            return false;
-        }
-
-        accountBalance -= amount;
-        receiver->accountBalance += amount;
-        transactions->push(gcnew Transaction(id, amount, "send", id, receiver->id));
-        receiver->transactions->push(gcnew Transaction(receiver->id, amount, "receive", id, receiver->id));
-
-
-        return true; 
-    }
-  
-
+    bool transfer(Customer^ receiver, float amount);
 };
